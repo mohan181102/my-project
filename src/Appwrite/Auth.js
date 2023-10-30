@@ -25,7 +25,7 @@ export class Authservice{
                 return useraccount;
             }
         }catch(e){
-            throw e
+            console.log(`error from createaccount: ${e}`)
         }
     }
 
@@ -35,7 +35,7 @@ export class Authservice{
         try{
             await this.account.createEmailSession(email,password)
         }catch(e){
-            throw e;
+            console.log(`error from login: ${e}`)
         }
     }
 
@@ -56,8 +56,17 @@ export class Authservice{
             
         }
     }
-}   
 
+    async Logout(){
+        try {
+            await this.account.deleteSession(); 
+        } catch (e) {
+            console.log('error from logout:Auth',e)
+            
+        }
+    }   
+
+}
 const authservice = new Authservice();
 
-export default authservice
+export default authservice;
