@@ -13,7 +13,7 @@ import {useForm} from 'react-hook-form';
 function Login(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {register, handlesubmit} = useForm()
+    const {register, handleSubmit} = useForm()
     const [error,seterror] = useState(null)
 
     const login = async(data)=>{
@@ -39,30 +39,26 @@ function Login(){
                         <Logo width="100%"/>
                     </span>
                 </div>
-                <div className={`mb-2 flex justify-center`}>
-                    <span className={`inline-block w-full max-w-[100px]`}>
-                        <Logo width="100%"/>
-                    </span>
-                </div>
 
                 {/* form start from here */}
 
-                <form onSubmit={handlesubmit(login)} className={`mt-8 `}>
+                <form onSubmit={handleSubmit(login)} className={`mt-8 `}>
                     <div >
                         <Input
                         label="Email: "
                         placeholder="Enter your email"
                         type="email"
+                        className='mb-4'
                         {...register('email',{required:true
                         })}/>
 
                         {/* password */}
 
-                        <Input type='password' lable='Password' placeholder='Enter password'
+                        <Input label="Password: " type='password'  className='mb-4' placeholder='Enter password'
                         {...register("password",{required:true,})}
                         />
 
-                        <Button children={'Sign in'} type="submit"/>
+                        <Button children={'Sign in'} className='cursor-pointer' type="submit"/>
                     </div>
                 </form>
             </div>

@@ -23,7 +23,7 @@ function Header() {
       {
          name: 'Singup',
          slug: '/singup',
-         active: authstatus
+         active: !authstatus
       },
       {
          name: 'All post',
@@ -46,7 +46,7 @@ function Header() {
                <nav className='flex'>
                   <div className='mr-4'>
                      <Link to='/'>
-                        <Logo/>
+                        <Logo width='70px'/>
                      </Link>
                   </div>
 

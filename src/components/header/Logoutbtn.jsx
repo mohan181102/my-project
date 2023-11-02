@@ -13,7 +13,7 @@ function Logoutbtn(){
         })
     }
     return (
-        <div className='inline-block px-6 py-2 duration-150 hover:bg-blue-200 rounded-full'>
+        <div className=' cursor-pointer inline-block px-6 py-2 duration-150 hover:bg-blue-200 rounded-full' onClick={logoutbtn}>
         Logout</div>
     )
 }

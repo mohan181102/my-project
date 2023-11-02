@@ -1,14 +1,14 @@
 import conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
-class Authservice{
+export class Authservice{
     client = new Client();
     databases;
     bucket;
 
     constructor(){
         this.client.setEndpoint(conf.APPWRITE_URL)
-        .setProject(conf.APPWRITE_PROJECTID)
+        .setProject(conf.APPWRITE_PROJECTID);
         this.databases = new Databases(this.client)
         this.bucket = new Storage(this.client)
     }
@@ -85,7 +85,7 @@ class Authservice{
         try {
             return await this.bucket.createFile(
                 conf.APPWRITE_BUCKET_ID,
-                ID.unique,
+                ID.unique(),
                 file
             )
         } catch (e) {

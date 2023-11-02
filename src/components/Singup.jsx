@@ -13,7 +13,7 @@ function Singup(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [er,seter] = useState("")
-    const {register,handlesubmit} = useForm()
+    const {register,handleSubmit} = useForm()
 
     const create = async(data)=>{
         seter("")
@@ -21,11 +21,11 @@ function Singup(){
             const userdata = await authservice.createaccount(data)
             if (userdata) {
                 const user = await authservice.getcurrentuser()
-                if (user) dispatch(login(user));
+                if (user) dispatch(login(userdata));
                 navigate('/')
             }
         } catch (error) {
-            console.log(error.message)
+            seter(error.message)
         }
     }
 
@@ -45,7 +45,7 @@ function Singup(){
 
                 {/* form */}
 
-                <form onSubmit={handlesubmit(create)} >
+                <form onSubmit={handleSubmit(create)} >
                     <div className={`space-y-4`}>
                         <Input 
                          lable='Full Name'

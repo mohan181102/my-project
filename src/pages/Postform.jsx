@@ -1,6 +1,6 @@
 import React from "react";
 import Postform from "../components/Postform/Postform";
-import { Container } from "postcss";
+import Container from "../components/Container";
 
 
 function AddPost(){

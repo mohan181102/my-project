@@ -11,7 +11,7 @@ export class Authservice{
         
         // add client in account
 
-        this.account = new Account(this.client)
+        this.account = new Account(this.client);
     }
 
     // promise for account
@@ -20,7 +20,7 @@ export class Authservice{
         try{
             const useraccount = await this.account.create(ID.unique(),email,password,name)
             if(useraccount){
-                return this.login(email,password)
+                return this.login({email,password})
             }else{
                 return useraccount;
             }
@@ -33,7 +33,7 @@ export class Authservice{
 
     async login({email,password}){
         try{
-            await this.account.createEmailSession(email,password)
+            return await this.account.createEmailSession(email,password)
         }catch(e){
             console.log(`error from login: ${e}`)
         }
@@ -41,16 +41,17 @@ export class Authservice{
 
     async getcurrentuser(){
         try {
-            return this.account.get()
+            return await this.account.get();
         } catch (e) {
             console.log("error from getcurrenuser:- ",e)
                        
         }
+        return null;
     }
 
     async deletesession(){
         try{
-            this.account.deleteSessions()
+            return await this.account.deleteSessions()
         }catch(e){
             console.log("error from deletesession:- ",e)
             
@@ -59,7 +60,7 @@ export class Authservice{
 
     async Logout(){
         try {
-            await this.account.deleteSession(); 
+            return await this.account.deleteSession(); 
         } catch (e) {
             console.log('error from logout:Auth',e)
             

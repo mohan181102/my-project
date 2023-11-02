@@ -8,6 +8,7 @@ import Select from "./Select";
 import Singup from "./Singup";
 import Login from "./Logincomp";
 import Logoutbtn from "./header/Logoutbtn";
+import Input from "./Input"
 
 
 export {
@@ -18,6 +19,7 @@ export {
     Button,
     RTE,
     Select,
+    Input,
     Singup,
     Login,
     Logoutbtn
