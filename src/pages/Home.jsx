@@ -9,7 +9,7 @@ function Home(){
     const [post,setpost] = useState([])
 
     useEffect(()=>{
-        authconfig.getpost().then((post)=>{
+        authconfig.allpost().then((post)=>{
             if(post){
                 setpost(post.documents)
             }
@@ -34,14 +34,15 @@ function Home(){
             </div>
             
         )
-    }else{
-        return(
+    }
+    else{
+    return(
             <div className="w-full py-8 ">
                 <Container>
                     <div className="flex flex-wrap">
                         {post.map((post)=>{
                             <div className="p-2 w-1/4" key={post.$id}>
-                                <Postcard post={post}/>
+                                <Postcard {...post}/>
                             </div>
                         })}
                     </div>
@@ -50,5 +51,6 @@ function Home(){
         )
     }
 }
+
 
 export default Home

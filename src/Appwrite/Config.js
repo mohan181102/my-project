@@ -13,17 +13,22 @@ export class Authservice{
         this.bucket = new Storage(this.client)
     }
 
-    async postcreate({title,slug,content,featuredimage,status,userID}){
-        try {
-            return await this.databases.createDocument(conf.APPWRITE_DATABASE_ID,conf.APPWRITE_COLLECTION_ID,slug,{
-                title,
-                content,
-                featuredimage,
-                status,
-                userID
-            })
-        } catch (e) {
-            console.log('postcreate:',e)
+    async postcreate({title,slug,conntent,featuredimg,status,userid}){
+        try{
+            return await this.databases.createDocument(
+                conf.APPWRITE_DATABASE_ID,
+                conf.APPWRITE_COLLECTION_ID,
+                slug,
+                {
+                    title,
+                    conntent,
+                    featuredimg,
+                    status,
+                    userid,
+                } 
+            )
+        } catch(error) {
+            console.log('postcreate:',error);
             
         }
 
@@ -68,12 +73,12 @@ export class Authservice{
         }
     }
 
-    async allpost(quries = [Query.equal('status','active')]){
+    async allpost(){
         try {
-            return this.databases.listDocuments(
+            return await this.databases.listDocuments(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
-                quries,
+                
 
             )
         } catch (e) {
@@ -106,10 +111,10 @@ export class Authservice{
         }
     }
 
-    getfile(fileid){
+    getfile(fileId){
         return this.bucket.getFilePreview(
             conf.APPWRITE_BUCKET_ID,
-            fileid
+            fileId
         )
     }
 }

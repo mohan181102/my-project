@@ -13,7 +13,7 @@ function Postform({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            slug: post?.$id || '',
             content: post?.content || '',
             status: 'active'
         }
@@ -33,14 +33,14 @@ function Postform({ post }) {
             }
         }
         else {
-            const elsefile = await authconfig.uploadfile(data.image[0]);
+            const elsefile = await authconfig.uploadfile(data.featuredimg[0]);
 
             if (elsefile) {
-                const fileid = elsefile.$id
-                data.featuredimage = fileid
+                const fileId = elsefile.$id
+                data.featuredimg = fileId
                 const dbpost = await authconfig.postcreate({
                     ...data,
-                    userID: userData.$id,
+                    userid: userData.$id,
                 })
 
                 if (dbpost) {
@@ -56,6 +56,8 @@ function Postform({ post }) {
             return value
                 .trim()
                 .toLowerCase()
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
+                .replace(/\s/g, "-");
 
         return '';
 
@@ -77,7 +79,7 @@ function Postform({ post }) {
         <form onSubmit={handleSubmit(submit)} className={`flex flex-wrap `} >
             <div className={`w-2/3 px-2`}>
                 <Input
-                    label='Title'
+                    label='Title :'
                     className='mb-4 '
                     {...register('title', {
                         required: true,
@@ -100,11 +102,11 @@ function Postform({ post }) {
                 />
 
                 <RTE
-                    label='content: '
-                    name='content'
+                    label='Content: '
+                    name='conntent'
                     control={control}
                     defaultvalue={getValues('content')}
-                    {...register('content',{required:true})}
+                    {...register('conntent',{required:true})} 
                 />
 
             </div>
@@ -113,9 +115,10 @@ function Postform({ post }) {
                 <Input
                     label='Featured image :'
                     type='file'
+                    name='featuredimg'
                     className='mb-4'
                     accept='image/png, image/jpg, image/jpeg image/gif'
-                    {...register('image', { required: !post })}
+                    {...register('featuredimg', { required: !post })}
                 />
 
                 {post && (

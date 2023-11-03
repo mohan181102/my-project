@@ -1,9 +1,8 @@
-import parse from 'html-react-parser';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import authconfig from '../Appwrite/Config';
-import { Container } from 'postcss';
+import Container from '../components/Container';
 import Button from '../components/Buttn';
 
 
@@ -14,7 +13,7 @@ export default function Post(){
 
     const userData = useSelector((state)=>state.auth.userdata);
     
-    const isauthor = post && userData ? post.userId === userData.$id :false;
+    const isauthor = post && userData ? post.userid === userData.$id :false;
 
     useEffect(()=>{
         if(slug){
@@ -30,7 +29,7 @@ export default function Post(){
             <Container>
                 <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2'>
                     <img className='rounded-xl'
-                    src={authconfig.getfile(post.featuredimage)}
+                    src={authconfig.getfile(post.featuredimg)}
                     alt={post.title}
                     />
 
