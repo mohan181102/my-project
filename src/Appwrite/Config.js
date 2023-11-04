@@ -63,7 +63,7 @@ export class Authservice{
 
     async getpost(slug){
         try {
-            return this.databases.getDocument(
+            return await this.databases.getDocument(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
                 slug
@@ -78,8 +78,6 @@ export class Authservice{
             return await this.databases.listDocuments(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
-                
-
             )
         } catch (e) {
             console.log('allpost: ',e)       

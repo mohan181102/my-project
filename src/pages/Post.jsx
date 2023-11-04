@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import authconfig from '../Appwrite/Config';
 import Container from '../components/Container';
 import Button from '../components/Buttn';
+import parse from 'html-react-parser'
 
 
 export default function Post(){
@@ -13,7 +14,7 @@ export default function Post(){
 
     const userData = useSelector((state)=>state.auth.userdata);
     
-    const isauthor = post && userData ? post.userid === userData.$id :false;
+    const isauthor = post ? true :false;
 
     useEffect(()=>{
         if(slug){
@@ -24,16 +25,20 @@ export default function Post(){
         }else navigate('/')
     },[slug,navigate]);
 
+    function deletePost(){
+        authconfig.deletepost(slug)
+    }
     return post? (
         <div className='py-8'>
             <Container>
-                <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2'>
-                    <img className='rounded-xl'
-                    src={authconfig.getfile(post.featuredimg)}
-                    alt={post.title}
+                <div className=' w-4/5 flex justify-center mb-4 mx-auto relative border rounded-xl p-2 flex-wrap'>
+                    <img 
+                        src={authconfig.getfile(post.featuredimg)}
+                        alt={post.title}
+                        className='rounded-xl'
                     />
 
-                    {isauthor && (
+                    {isauthor? (
                         <div className='absolute right-6 top-6'>
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button bgcolor='bg-red-400' onClick={deletePost}>
@@ -41,9 +46,12 @@ export default function Post(){
                                 </Button>
                             </Link>
                         </div>
-                    )}
+                    ): null}
                     <div className='w-full mb-6'>
                         <h1 className='text-2xl font-bold'>{post.title}</h1>
+                    </div>
+                    <div className={`text-lg h-auto p-4`}>
+                        {parse(post.conntent)}
                     </div>
 
                 </div>

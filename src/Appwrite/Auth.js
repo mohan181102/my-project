@@ -49,18 +49,9 @@ export class Authservice{
         return null;
     }
 
-    async deletesession(){
-        try{
-            return await this.account.deleteSessions()
-        }catch(e){
-            console.log("error from deletesession:- ",e)
-            
-        }
-    }
-
     async Logout(){
         try {
-            return await this.account.deleteSession(); 
+            return await this.account.deleteSessions(); 
         } catch (e) {
             console.log('error from logout:Auth',e)
             

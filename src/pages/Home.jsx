@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import authconfig from "../Appwrite/Config";
+import authservice from "../Appwrite/Auth";
 import Container from "../components/Container";
-import Postcard from "../components/Poscard";
 
 
 
 function Home(){
-    const [post,setpost] = useState([])
+    const [user,setuser] = useState('')
 
     useEffect(()=>{
-        authconfig.allpost().then((post)=>{
-            if(post){
-                setpost(post.documents)
+         authservice.getcurrentuser().then((value)=>{
+            if(value){
+                setuser(value.name)            
             }
         })
     },[])
 
-    if(post.length==0){
+    if(user==''){
         return(
             <div className={`w-full py-8 mt-4 text-center`}>
                 <Container >
@@ -35,21 +34,20 @@ function Home(){
             
         )
     }
-    else{
+    
     return(
-            <div className="w-full py-8 ">
+            
+            <div className="w-full py-8 text-center">
                 <Container>
-                    <div className="flex flex-wrap">
-                        {post.map((post)=>{
-                            <div className="p-2 w-1/4" key={post.$id}>
-                                <Postcard {...post}/>
-                            </div>
-                        })}
+                    <div className="flex flex-wrap w-full">
+                        <h1 className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}>
+                            Welcome {user}&#128591;
+                        </h1>               
                     </div>
                 </Container>
             </div>
-        )
-    }
+    )
+    
 }
 
 

@@ -2,14 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import authservice from "../../Appwrite/Auth";
 import { logout } from "../../store/authslice";
-
+import { useNavigate } from "react-router-dom";
 
 function Logoutbtn(){
-    
+     
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const logoutbtn = ()=>{
         authservice.Logout().then(()=>{
             dispatch(logout())
+            window.location.reload(false)  
         })
     }
     return (

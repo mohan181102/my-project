@@ -17,12 +17,15 @@ function Singup(){
 
     const create = async(data)=>{
         seter("")
+
         try {
             const userdata = await authservice.createaccount(data)
+            dispatch(login(userdata))
             if (userdata) {
                 const user = await authservice.getcurrentuser()
-                if (user) dispatch(login(userdata));
-                navigate('/')
+                if (user)(
+                    navigate('/')
+                )
             }
         } catch (error) {
             seter(error.message)

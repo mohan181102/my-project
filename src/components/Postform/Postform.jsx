@@ -24,7 +24,7 @@ function Postform({ post }) {
     const submit = async (data) => {
         if (post) {
             const file = data.image[0] ? authconfig.uploadfile(data.image[0]) : null
-            if (file) { authconfig.deletepost(post.featuredimage) }
+            if (file) { authconfig.deletepost(post.featuredimg) }
 
             const dbpost = await authconfig.postupdate(post.$id, { ...data, featuredimage: file ? file.$id : 'undifiend' })
 
@@ -40,7 +40,7 @@ function Postform({ post }) {
                 data.featuredimg = fileId
                 const dbpost = await authconfig.postcreate({
                     ...data,
-                    userid: userData.$id,
+                    userid: elsefile.$id,
                 })
 
                 if (dbpost) {
