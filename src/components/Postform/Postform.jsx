@@ -1,11 +1,14 @@
 import React from "react";
+import './Postform.css'
 import { useCallback } from "react";
 import { appendErrors, useForm } from 'react-hook-form'
 import {Button, Select, Input} from '../index'
 import RTE from "../RTE";
 import authconfig from "../../Appwrite/Config";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Post } from "../../store/postslice";
+import authservice from "../../Appwrite/Auth";
 
 
 function Postform({ post }) {
@@ -19,8 +22,8 @@ function Postform({ post }) {
         }
     })
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const userData = useSelector((state) => state.auth.userdata)
-
     const submit = async (data) => {
         if (post) {
             const file = data.image[0] ? authconfig.uploadfile(data.image[0]) : null
@@ -34,17 +37,24 @@ function Postform({ post }) {
         }
         else {
             const elsefile = await authconfig.uploadfile(data.featuredimg[0]);
-
+            const id = await authservice.getcurrentuser()
             if (elsefile) {
                 const fileId = elsefile.$id
                 data.featuredimg = fileId
+                dispatch(Post(data))
+                console.log(data)
+
                 const dbpost = await authconfig.postcreate({
                     ...data,
-                    userid: elsefile.$id,
+                    userid: id.email,
                 })
 
                 if (dbpost) {
-                    navigate(`/post/${dbpost.$id}`)
+                    document.getElementById('submitpop').style.display='block'
+                    setTimeout(()=>{
+                        navigate(`/post/${dbpost.$id}`)
+                    },1000)
+                    
                 }
             }
         }
@@ -76,6 +86,7 @@ function Postform({ post }) {
     }, [watch, slugTransform, setValue])
 
     return (
+        
         <form onSubmit={handleSubmit(submit)} className={`flex flex-wrap `} >
             <div className={`w-2/3 px-2`}>
                 <Input
@@ -140,6 +151,10 @@ function Postform({ post }) {
                 />
 
                 <Button type="submit" bgcolor="primary" className={`bg-blue-500`} children={post? 'Update': 'Submit'}/>
+
+                <div id="submitpop">
+                    <p id="popupmsg">Post create</p>
+                </div>
             </div>
 
 

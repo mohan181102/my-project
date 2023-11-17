@@ -1,32 +1,43 @@
-import React, {useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Postcard from "../components/Poscard";
 import authconfig from "../Appwrite/Config";
 import Container from "../components/Container";
+import { useSelector } from "react-redux";
 
 
-function Allpost(){
-    const [post,setpost] = useState([])
-    useEffect(()=>{},[])
-    authconfig.allpost([]).then((pos)=>{
-        if(pos){
-            setpost(pos.documents)
-        }
-    })
+function Allpost() {
+    const [post, setpost] = useState([])
+    const select = useSelector((state)=>state.POST.userdata)
+    console.log(select)
+    useEffect(() => { }, [])
 
-    return post? (
+    // authconfig.allpost().then((pos) => {
+    //     if (pos) {
+    //         setpost(pos.documents)
+    //     }
+    // })
+
+    // SECOND APPROCH
+
+
+
+
+    return select ? (
         <div className={`w-full py-8`}>
             <Container>
                 <div className={`flex flex-wrap`}>
-                    {post.map((pos)=>(
+                    {select.map((pos) => (
+
                         <div key={pos.$id} className={`p-2 w-1/4`}>
-                            <Postcard {...pos}/>
+                            <Postcard {...pos} />
                         </div>
+
                     ))}
                 </div>
             </Container>
 
         </div>
-    ) : null
+    ) : 'post something'
 
 }
 

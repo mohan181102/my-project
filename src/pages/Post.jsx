@@ -5,6 +5,7 @@ import authconfig from '../Appwrite/Config';
 import Container from '../components/Container';
 import Button from '../components/Buttn';
 import parse from 'html-react-parser'
+import authservice from '../Appwrite/Auth';
 
 
 export default function Post(){
@@ -14,7 +15,8 @@ export default function Post(){
 
     const userData = useSelector((state)=>state.auth.userdata);
     
-    const isauthor = post ? true :false;
+    // const isauthor = post ? true :false;
+    const isauthor = authservice.getcurrentuser()
 
     useEffect(()=>{
         if(slug){
@@ -28,7 +30,8 @@ export default function Post(){
     function deletePost(){
         authconfig.deletepost(slug)
     }
-    return post? (
+
+    return post && isauthor ? (
         <div className='py-8'>
             <Container>
                 <div className=' w-4/5 flex justify-center mb-4 mx-auto relative border rounded-xl p-2 flex-wrap'>
@@ -40,9 +43,14 @@ export default function Post(){
 
                     {isauthor? (
                         <div className='absolute right-6 top-6'>
-                            <Link to={`/edit-post/${post.$id}`}>
+                            <Link>
                                 <Button bgcolor='bg-red-400' onClick={deletePost}>
                                     Delete
+                                </Button>
+                            </Link>
+                            <Link to={`/edit-post/${post.$id}`}>
+                                <Button bgcolor='py-2 bg-yellow-400'>
+                                    Edit
                                 </Button>
                             </Link>
                         </div>

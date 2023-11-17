@@ -1,5 +1,7 @@
 import conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
+import authservice from "./Auth";
+
 
 export class Authservice{
     client = new Client();
@@ -25,6 +27,7 @@ export class Authservice{
                     featuredimg,
                     status,
                     userid,
+                    
                 } 
             )
         } catch(error) {
@@ -75,9 +78,12 @@ export class Authservice{
 
     async allpost(){
         try {
+            const userdata = await authservice.getcurrentuser()
+            const Email = userdata.email
             return await this.databases.listDocuments(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
+                [Query.equal('userid',[Email])]
             )
         } catch (e) {
             console.log('allpost: ',e)       

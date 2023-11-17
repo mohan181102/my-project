@@ -1,4 +1,5 @@
 import React from "react";
+import './Singup.css'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, login as storelogin } from "../store/authslice";
@@ -32,6 +33,10 @@ function Singup(){
         }
     }
 
+    function change(){
+        document.getElementById('paslen').style.opacity=1;
+    }
+
     return (
         <div className={`flex items-center justify-center `}>
             <div className={`mx-auto w-full max-w-lg bg-gray-200 rounded-xl p-10 border border-black `}>
@@ -40,18 +45,14 @@ function Singup(){
                         <Logo width="100%"/>
                     </span>
                 </div>
-                <div className={`mb-2 flex justify-center`}>
-                    <span className={`inline-block w-full max-w-[100px]`}>
-                        <Logo width="100%"/>
-                    </span>
-                </div>
+    
 
                 {/* form */}
 
                 <form onSubmit={handleSubmit(create)} >
                     <div className={`space-y-4`}>
                         <Input 
-                         lable='Full Name'
+                         label="Username: "
                          placeholder='Enter your name'
                          {...register('name',{required:true})}
                          />
@@ -64,13 +65,18 @@ function Singup(){
                         })}/>
 
                         <Input
-                        lable='Password'
+                        label="Password: "
                         placeholder='Enter your password'
                         type='password'
-                        {...register('password',{required:true})}
+                        
+                        {...register('password',{required:true, minLength:8})}
                         />
 
-                        <button type="submit" className="w-full">Create account</button>
+                        <div id="paslen">
+                            <p>password must be 8</p>
+                        </div>
+                        
+                        <button type="submit" className="w-full bg-green-500 py-1 hover:bg-green-600 rounded-md">Create account</button>
                     </div>
                 </form>
             </div>

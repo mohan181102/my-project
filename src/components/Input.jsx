@@ -5,6 +5,7 @@ const Input = React.forwardRef(function Input({
     label,
     type,
     className='',
+    onChange,
     ...props
 },ref){
 
@@ -22,6 +23,7 @@ const Input = React.forwardRef(function Input({
             ${className}`}
             ref={ref}
             {...props}
+            onPointerEnter={onChange}
             id={Id}
             />
 
