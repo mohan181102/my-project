@@ -2,13 +2,22 @@ import React, { useState, useEffect } from "react";
 import Postcard from "../components/Poscard";
 import authconfig from "../Appwrite/Config";
 import Container from "../components/Container";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { Post } from "../store/postslice";
 
 function Allpost() {
     const [post, setpost] = useState([])
+    const dispatch = useDispatch()
+    
+    async function loadpost(){
+        await authconfig.allpost().then((value)=>{
+            dispatch(Post(value.documents))
+        })
+    }
+    loadpost()
     const select = useSelector((state)=>state.POST.userdata)
     console.log(select)
+    console.log(post)
     useEffect(() => { }, [])
 
     // authconfig.allpost().then((pos) => {
@@ -17,12 +26,8 @@ function Allpost() {
     //     }
     // })
 
-    // SECOND APPROCH
-
-
-
-
-    return select ? (
+    if(select!=[]){
+     return(
         <div className={`w-full py-8`}>
             <Container>
                 <div className={`flex flex-wrap`}>
@@ -32,12 +37,14 @@ function Allpost() {
                             <Postcard {...pos} />
                         </div>
 
-                    ))}
+                    ))
+                    }
                 </div>
             </Container>
 
         </div>
-    ) : 'post something'
+     )
+    } else { return (<h2>'post something'</h2>)}
 
 }
 

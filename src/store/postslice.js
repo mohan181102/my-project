@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import authconfig from '../Appwrite/Config'
 
 const initialState = {
     status:false,
     userdata:[]
 }
+
 
 const postslice = createSlice({
     name:'POST',

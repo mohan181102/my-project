@@ -11,7 +11,6 @@ function Logoutbtn(){
     const logoutbtn = ()=>{
         authservice.Logout().then(()=>{
             dispatch(logout())
-            window.location.reload(false)  
         })
     }
     return (
