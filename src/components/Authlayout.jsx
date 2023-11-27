@@ -14,7 +14,8 @@ export default function Protected({children, authentication=true}){
         }else if(!authentication && authstatus !== authentication){
             navigate('/')
         }
-        setloader(false)
+        children? setloader(false) : ""
+        
     },[authstatus, navigate, authentication])
 
     return loader? <h1>loader....</h1> : <>{children}</>

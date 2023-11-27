@@ -23,7 +23,7 @@ function Login(){
             if (sesion){
                 const userdata = await authservice.getcurrentuser()
                 if (userdata) (dispatch(storelogin(userdata)))
-                navigate('/')
+                navigate('./')
 
             }
         } catch (error) {
