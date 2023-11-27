@@ -1,0 +1,52 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+@media only screen and (max-width:600px) {
+    #header{
+        width: 100vw;
+        color: white;
+        height: 55px;
+        background-color: black;
+        /* display: flex; */
+        /* position: fixed; */
+        justify-content: space-around;
+        object-fit: contain;
+    }
+    .nav_item{
+        height: 40px;
+       /* display: none; */
+       width: auto;
+        /* position: fixed; */
+        right: 0px;
+        
+        top: 0px;
+        
+    }
+    .nav_li{
+        margin-bottom: 4px;
+        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        padding-left: 4px;
+        
+        width: 60px;
+        font-size: 0.8rem;
+        justify-content: center;
+        border-radius: 1.3rem;
+        border: 2px solid white;
+    }
+
+    
+
+    .logo{
+        border: 2px solid white;
+        /* position: fixed; */
+        left: 0px;
+        margin-left: 10px;
+        
+
+    }
+
+}

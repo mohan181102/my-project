@@ -1,0 +1,48 @@
+@media  screen and (max-width:600px) {
+    *{
+        margin: 0px;
+        padding:0px;
+    }
+
+    .section{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: black;
+        color: white;
+        
+        /* display: inline; */
+        justify-content: center;
+    }
+
+    .copy{
+        font-size: 0.8rem;
+        font-weight: 100;
+        color: white;
+    }
+    .company{
+        border: 1px  solid gray;
+        display: inline;
+        color: white;
+        width: 33%;
+        transition: all 0.2s;
+        scale: 1;
+    }
+    .company:hover{
+        transform: scale(1.2);
+        background-color: transparent
+    }
+
+    .link{
+        color:white;
+        font-weight: 100;
+    }
+    .li_company{
+        width: fit-content;
+        color: white;
+        font-size: 0.8rem;
+        
+    }
+
+     
+}
