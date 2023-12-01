@@ -6,46 +6,44 @@ import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../store/postslice";
 
 function Allpost() {
-    const [post, setpost] = useState([])
-    const dispatch = useDispatch()
-    
-    async function loadpost(){
-        await authconfig.allpost().then((value)=>{
-            dispatch(Post(value.documents))
-        })
-    }
-    loadpost()
-    const select = useSelector((state)=>state.POST.userdata)
-    console.log(select)
-    console.log(post)
-    useEffect(() => { }, [])
+  const [post, setpost] = useState([]);
+  const dispatch = useDispatch();
 
-    // authconfig.allpost().then((pos) => {
-    //     if (pos) {
-    //         setpost(pos.documents)
-    //     }
-    // })
+  async function loadpost() {
+    await authconfig.allpost().then((value) => {
+      dispatch(Post(value.documents));
+    });
+  }
 
-    if(select!=[]){
-     return(
-        <div className={`w-full py-8`}>
-            <Container>
-                <div className={`flex flex-wrap`}>
-                    {select.map((pos) => (
+  const select = useSelector((state) => state.POST.userdata);
+  select ? " " : loadpost();
+  console.log(select);
+  console.log(post);
+  useEffect(() => {}, []);
 
-                        <div key={pos.$id} className={`p-2 w-1/4`}>
-                            <Postcard {...pos} />
-                        </div>
+  // authconfig.allpost().then((pos) => {
+  //     if (pos) {
+  //         setpost(pos.documents)
+  //     }
+  // })
 
-                    ))
-                    }
-                </div>
-            </Container>
-
-        </div>
-     )
-    } else { return (<h2>'post something'</h2>)}
-
+  if (select != []) {
+    return (
+      <div className={`w-full py-8`}>
+        <Container>
+          <div className={`flex flex-wrap`}>
+            {select.map((pos) => (
+              <div key={pos.$id} className={`p-2 w-1/4`}>
+                <Postcard {...pos} />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
+    );
+  } else {
+    return <h2>'post something'</h2>;
+  }
 }
 
-export default Allpost
+export default Allpost;
