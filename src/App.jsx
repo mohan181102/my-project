@@ -7,6 +7,7 @@ import { login, logout } from "./store/authslice";
 import { Outlet } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import Loder from "./loader/Mainloader";
 
 function App() {
   const [loading, setloading] = useState(true);
@@ -27,10 +28,10 @@ function App() {
 
   return !loading ? (
     <>
-      <div className="min-h-screen flex flex-wrap content-between bg-gray-400 ">
+      <div className="min-h-screen flex flex-wrap content-between bgwhite ">
         <div className="w-full block">
           <Header />
-          <main>
+          <main className={` bg-slate-300 pt-14`}>
             <Outlet />
           </main>
           <Footer />
@@ -38,7 +39,9 @@ function App() {
       </div>
     </>
   ) : (
-    "loding..."
+    <div className={` h-screen`}>
+      <Loder />
+    </div>
   );
 }
 

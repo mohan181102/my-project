@@ -7,10 +7,11 @@
     #header{
         width: 100vw;
         color: white;
-        height: 55px;
+        height: 60px;
         background-color: black;
-        /* display: flex; */
-        /* position: fixed; */
+        /* display: absolute; */
+        position: fixed;
+        z-index: 1;
         justify-content: space-around;
         object-fit: contain;
     }
@@ -29,13 +30,23 @@
         margin-left: 8px;
         display: flex;
         align-items: center;
-        padding-left: 4px;
+        padding: 4px;
         
         width: 60px;
         font-size: 0.8rem;
         justify-content: center;
         border-radius: 1.3rem;
         border: 2px solid white;
+    }
+    .nav_li:hover{
+        background-color: white;
+        color: white;
+        
+        background-image: linear-gradient(
+            280deg,
+            transparent,
+            rgba(37,37,37,0.5)
+        );
     }
 
     
@@ -44,6 +55,9 @@
         border: 2px solid white;
         /* position: fixed; */
         left: 0px;
+        border-radius: 0.3rem;
+        padding: 5px;
+        margin-bottom: 4px;
         margin-left: 10px;
         
 

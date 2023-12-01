@@ -1,0 +1,15 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.post{
+    background-color: lightblue;
+    border: 1px solid black;
+}
+@media (max-width:600px) {
+    .post{
+        background-color:lightblue;
+        border: 1px solid black;
+    }
+}

@@ -3,6 +3,7 @@ import authservice from "../Appwrite/Auth";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
 import "./Home";
+import ReactLoading from "react-loading";
 
 function Home() {
   const value = useSelector((state) => state.auth.userdata);
@@ -19,8 +20,13 @@ function Home() {
   //   SECOND APPROCH
 
   useEffect(() => {
-    setuser(value), [value];
-  });
+    user ? (
+      ""
+    ) : (
+      <ReactLoading type={"bars"} width={90} height={90} color={"white"} />
+    );
+    setuser(value);
+  }, [value]);
 
   if (user == null) {
     return (
@@ -38,13 +44,13 @@ function Home() {
     );
   } else
     return (
-      <div id="main" className="w-ful py-8 text-center">
+      <div id="main" className="w-full h-full py-8 text-center">
         <Container>
           <div className="flex flex-wrap w-full">
             <h1
               className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
             >
-              Welcome &#128591;
+              Welcome {user.userdata.name ? user.userdata.name : ""} &#128591;
             </h1>
           </div>
         </Container>

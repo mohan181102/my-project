@@ -1,0 +1,20 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.loader{
+    animation-name: loader;
+    animation-iteration-count: infinite;
+    
+    animation-timing-function: 0.3s;
+}
+
+@keyframes loader{
+    from{
+        transform:scaleX(0);
+    }
+    to{
+        transform: scaleX(1);
+    }
+}
