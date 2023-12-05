@@ -1,0 +1,60 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+@media (max-width:600px) {
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    .image{
+        width: auto;
+        height: 60vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items:start;
+        
+        top :170px;
+        position: absolute;
+        
+    
+        overflow-y:scroll;
+
+    }
+    .image::-webkit-scrollbar{
+        display: none;
+    }
+    .imdiv{
+        width: 30vw;
+        overflow-y: scroll;
+        margin: 2px;
+        border-radius: 0.4rem;
+        height: auto;
+        background-position: center;
+        background-size: cover;
+    }
+    #row1{
+        overflow-y: scroll;
+        display: inline;
+        width: auto;
+        height: auto;
+    
+    }
+    #row2{
+        overflow-y: scroll;
+        display: inline;
+        
+        width: auto;
+        height: auto;
+    }
+    #row3{
+        display: inline;
+        overflow-y: scroll;
+    
+        width: auto;
+        height: auto;
+        padding: auto;
+    }
+}

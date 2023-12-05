@@ -2,26 +2,45 @@ import React, { useEffect, useState } from "react";
 import authservice from "../Appwrite/Auth";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
-import "./Home";
+import "./Home.css";
+import Unplash from "../Unplash/Unplash";
 import ReactLoading from "react-loading";
+import instance from "../Unplash/Unplash_axious";
+import axios from "axios";
 
 function Home() {
   const value = useSelector((state) => state.auth.userdata);
   const [user, setuser] = useState(null);
+  const unplash = {
+    first: "anime",
+    second: "girl",
+    third: "nature",
+  };
+  const [url, seturl] = useState([]);
+  const [url1, seturl1] = useState([]);
+  const [url2, seturl2] = useState([]);
 
-  //   useEffect(() => {
-  //     authservice.getcurrentuser().then((value) => {
-  //       if (value) {
-  //         setuser(value);
-  //       }
-  //     });
-  //   }, []);
-
-  //   SECOND APPROCH
+  async function run() {
+    await axios
+      .get(
+        `https://api.unsplash.com/search/photos?page=1&query=${unplash.first}&client_id=${Unplash.unplash_accesskey}`
+      )
+      .then((res) => seturl(res.data.results));
+    await axios
+      .get(
+        `https://api.unsplash.com/search/photos?page=1&query=${unplash.second}&client_id=${Unplash.unplash_accesskey}`
+      )
+      .then((res) => seturl1(res.data.results));
+    await axios
+      .get(
+        `https://api.unsplash.com/search/photos?page=1&query=${unplash.third}&client_id=${Unplash.unplash_accesskey}`
+      )
+      .then((res) => seturl2(res.data.results));
+  }
 
   useEffect(() => {
     user ? (
-      ""
+      ("", run())
     ) : (
       <ReactLoading type={"bars"} width={90} height={90} color={"white"} />
     );
@@ -44,14 +63,39 @@ function Home() {
     );
   } else
     return (
-      <div id="main" className="w-full h-full py-8 text-center">
+      <div id="main" className="w-full py-8 text-center">
         <Container>
-          <div className="flex flex-wrap w-full">
+          <div className="flex absolute  top-24  flex-wrap w-full">
             <h1
               className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
             >
-              Welcome {user.userdata.name ? user.userdata.name : ""} &#128591;
+              Welcome {} &#128591;
             </h1>
+          </div>
+          <div className={`image`}>
+            <div id="row1" key={3}>
+              {url.map((ur) => (
+                <div className="imdiv " key={ur.id}>
+                  <img className={`img`} src={ur.urls.raw} />
+                </div>
+              ))}
+            </div>
+
+            <div id="row2" key={1}>
+              {url1.map((ur) => (
+                <div className="imdiv " key={ur.id}>
+                  <img className={`img`} src={ur.urls.raw} />
+                </div>
+              ))}
+            </div>
+
+            <div id="row3" key={2}>
+              {url2.map((ur) => (
+                <div className="imdiv " key={ur.id}>
+                  <img className={`img`} src={ur.urls.raw} />
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </div>

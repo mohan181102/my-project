@@ -12,7 +12,7 @@ export default function Post() {
   const [post, setpost] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
-
+  
   const userData = useSelector((state) => state.auth.userdata);
 
   // const isauthor = post ? true :false;

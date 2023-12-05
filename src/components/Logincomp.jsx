@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import authservice from "../Appwrite/Auth";
 import { useForm } from "react-hook-form";
 import ReactLoading from "react-loading";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -19,16 +20,15 @@ function Login() {
 
   const login = async (data) => {
     seterror("");
+    document.getElementById("loader").style.display = "block";
     try {
       const sesion = await authservice.login(data);
       if (sesion) {
         // setuserdata(await authservice.getcurrentuser());
         let userdata = await authservice.getcurrentuser();
         if (userdata) dispatch(storelogin(userdata));
-        setloading(false);
-        if (loading == false) {
-          document.getElementById("load").style.display = "none";
-        }
+
+        document.getElementById("loader").style.display = "none";
         navigate("./");
       }
     } catch (error) {
@@ -37,8 +37,19 @@ function Login() {
   };
   return (
     <div className="flex items-center justify-center w-full">
+      <div id="loader">
+        <ReactLoading
+          id="load"
+          className={``}
+          type={"bars"}
+          color={"white"}
+          width={90}
+          height={90}
+        />
+      </div>
+
       <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black`}
+        className={`formdiv mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black`}
       >
         <div className={`mb-2 flex justify-center`}>
           <span className={`inline-block w-full max-w-[100px]`}>
@@ -48,7 +59,7 @@ function Login() {
 
         {/* form start from here */}
 
-        <form onSubmit={handleSubmit(login)} className={`mt-8 `}>
+        <form onSubmit={handleSubmit(login)} className={`mt-5`}>
           <div>
             <Input
               label="Email: "

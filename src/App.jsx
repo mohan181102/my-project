@@ -31,7 +31,9 @@ function App() {
       <div className="min-h-screen flex flex-wrap content-between bgwhite ">
         <div className="w-full block">
           <Header />
-          <main className={` bg-slate-300 pt-14`}>
+          <main
+            className={`flex items-center justify-center bg-slate-300 h-screen`}
+          >
             <Outlet />
           </main>
           <Footer />
