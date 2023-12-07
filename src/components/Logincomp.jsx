@@ -15,21 +15,22 @@ function Login() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, seterror] = useState(null);
-  // const [userdata, setuserdata] = useState(null);
-  const [loading, setloading] = useState(true);
 
   const login = async (data) => {
     seterror("");
     document.getElementById("loader").style.display = "block";
     try {
+      console.log(data);
       const sesion = await authservice.login(data);
       if (sesion) {
-        // setuserdata(await authservice.getcurrentuser());
-        let userdata = await authservice.getcurrentuser();
-        if (userdata) dispatch(storelogin(userdata));
+        const userdata = await authservice.getcurrentuser();
 
-        document.getElementById("loader").style.display = "none";
-        navigate("./");
+        if (userdata) {
+          dispatch(storelogin(userdata));
+          document.getElementById("loader").style.display = "none";
+        }
+        navigate("/");
+        console.log("after navigate");
       }
     } catch (error) {
       console.log(error.message);
@@ -37,7 +38,7 @@ function Login() {
   };
   return (
     <div className="flex items-center justify-center w-full">
-      <div id="loader">
+      <div id="loader" className={`fixed`}>
         <ReactLoading
           id="load"
           className={``}

@@ -10,7 +10,7 @@
         flex-wrap: wrap;
         background-color: black;
         color: white;
-        
+        z-index: auto;
         /* display: inline; */
         justify-content: center;
     }
