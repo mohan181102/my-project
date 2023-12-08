@@ -3,7 +3,7 @@
     margin: 0px;
 }
 
-@media (max-width:550px) {
+@media (max-width:600px) {
     *{
         padding: 0px;
         margin: 0px;
@@ -54,7 +54,7 @@
         overflow-y: scroll;
     
         width: auto;
-        height: auto;
+        height:auto;
         padding: auto;
     }
 }

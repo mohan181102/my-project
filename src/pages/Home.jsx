@@ -3,44 +3,16 @@ import authservice from "../Appwrite/Auth";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
 import "./Home.css";
-import Unplash from "../Unplash/Unplash";
 import ReactLoading from "react-loading";
-import axios from "axios";
+import Feed from "./Feed";
 
 function Home() {
   const value = useSelector((state) => state.auth.userdata);
   const [user, setuser] = useState(null);
-  const unplash = {
-    first: "anime",
-    second: "girl",
-    third: "nature",
-  };
-  const [url, seturl] = useState([]);
-  const [url1, seturl1] = useState([]);
-  const [url2, seturl2] = useState([]);
-  const [pagenumber, setpagenumber] = useState(null);
-
-  async function run() {
-    await axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${unplash.first}&client_id=${Unplash.unplash_accesskey}`
-      )
-      .then((res) => seturl(res.data.results));
-    await axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${unplash.second}&client_id=${Unplash.unplash_accesskey}`
-      )
-      .then((res) => seturl1(res.data.results));
-    await axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${unplash.third}&client_id=${Unplash.unplash_accesskey}`
-      )
-      .then((res) => seturl2(res.data.results));
-  }
 
   useEffect(() => {
     user ? (
-      ("", run(), setpagenumber(Math.floor(Math.random() * 10 + 5)))
+      ""
     ) : (
       <ReactLoading type={"bars"} width={90} height={90} color={"white"} />
     );
@@ -73,29 +45,7 @@ function Home() {
             </h1>
           </div>
           <div className={`image`}>
-            <div className={`w-auto h-auto`} id="row1">
-              {url.map((ur) => (
-                <div className="imdiv " key={ur.id}>
-                  <img className={`img`} src={ur.urls.raw} />
-                </div>
-              ))}
-            </div>
-
-            <div className={`w-auto h-auto`} id="row2">
-              {url1.map((ur) => (
-                <div className="imdiv " key={ur.id}>
-                  <img className={`img`} src={ur.urls.raw} />
-                </div>
-              ))}
-            </div>
-
-            <div className={`w-auto h-auto`} id="row3">
-              {url2.map((ur) => (
-                <div className="imdiv " key={ur.id}>
-                  <img className={`img`} src={ur.urls.raw} />
-                </div>
-              ))}
-            </div>
+            <Feed />
           </div>
         </Container>
       </div>
