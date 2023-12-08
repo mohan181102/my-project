@@ -73,7 +73,7 @@ function Home() {
             </h1>
           </div>
           <div className={`image`}>
-            <div id="row1">
+            <div id="row1" className={`w-auto h-auto`}>
               {url.map((ur) => (
                 <div className="imdiv " key={ur.id}>
                   <img className={`img`} src={ur.urls.raw} />
@@ -81,7 +81,7 @@ function Home() {
               ))}
             </div>
 
-            <div id="row2">
+            <div id="row2" className={`w-auto h-auto`}>
               {url1.map((ur) => (
                 <div className="imdiv " key={ur.id}>
                   <img className={`img`} src={ur.urls.raw} />
@@ -89,7 +89,7 @@ function Home() {
               ))}
             </div>
 
-            <div id="row3">
+            <div id="row3" className={`w-auto h-auto`}>
               {url2.map((ur) => (
                 <div className="imdiv " key={ur.id}>
                   <img className={`img`} src={ur.urls.raw} />
