@@ -5,6 +5,7 @@ import authservice from "./Appwrite/Auth";
 import { useEffect } from "react";
 import { login, logout } from "./store/authslice";
 import { Outlet } from "react-router-dom";
+import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Loder from "./loader/Mainloader";
@@ -28,7 +29,7 @@ function App() {
 
   return !loading ? (
     <>
-      <div className="min-h-screen flex flex-wrap content-between bgwhite ">
+      <div className="screen min-h-screen flex flex-wrap content-between bgwhite ">
         <div className="w-full block">
           <Header />
           <main

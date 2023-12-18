@@ -3,6 +3,9 @@
     margin: 0px;
 }
 
+#loader{
+    display: none;
+}
  
 @media (max-width:600px) {
     #loader{
@@ -14,8 +17,9 @@
         position: fixed;
         display: none;
         padding-top:65%;
-        
+        overflow: hidden;
     }
+     
 
     #load{
         margin-left: auto;

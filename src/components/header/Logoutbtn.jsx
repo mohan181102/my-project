@@ -12,6 +12,7 @@ function Logoutbtn() {
     authservice.Logout().then(() => {
       dispatch(logout());
     });
+    navigate("/");
   };
   return (
     <div

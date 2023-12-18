@@ -15,4 +15,24 @@
     font-size: large;
 }
 
+@media (max-width:600px) {
+    .form{
+        height: auto;
+        display: flex;
+        width: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items:center;
+        object-fit: contain;
+        justify-content: space-between;
+        border: 2px solid red;
+    }
+    .slug{
+        border: 1px solid green;
+    }
+    .rte{
+        height: 20rem;
+    }
+}
+
 

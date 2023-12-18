@@ -21,9 +21,9 @@ function Login() {
     document.getElementById("loader").style.display = "block";
     try {
       console.log(data);
-      const sesion = await authservice.login(data);
+      const sesion = await authservice.login(data).catch((er) => er);
       if (sesion) {
-        const userdata = await authservice.getcurrentuser();
+        const userdata = await authservice.getcurrentuser().catch((er) => console.log(er));
 
         if (userdata) {
           dispatch(storelogin(userdata));

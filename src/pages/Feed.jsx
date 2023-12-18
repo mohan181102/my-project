@@ -7,46 +7,43 @@ import axios from "axios";
 function Feed() {
   const unplash = {
     first: "anime",
-    second: "girl",
-    third: "nature",
   };
   const [url, seturl] = useState([]);
-  const [url1, seturl1] = useState(null);
-  const [url2, seturl2] = useState(null);
   const [pagenumber, setpagenumber] = useState(null);
 
   async function run() {
-    setpagenumber(Math.floor(Math.random() * 10 + 1));
+    setpagenumber(Math.floor(Math.random() * 50 + 2));
+
     await axios
       .get(
         `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${unplash.first}&client_id=${Unplash.unplash_accesskey}`
       )
       .then((res) => seturl(res.data.results));
-
-    await axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${unplash.second}&client_id=${Unplash.unplash_accesskey}`
-      )
-      .then((res) => seturl1(res.data.results));
-    await axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${unplash.third}&client_id=${Unplash.unplash_accesskey}`
-      )
-      .then((res) => seturl2(res.data.results));
   }
 
+  console.log(url);
   useEffect(() => {
     run();
   }, []);
   return (
     <>
-      {url
-        ? url.map((ur) => (
-            <div className="imdiv " key={ur.id}>
-              <img className={`img`} src={ur.urls.raw} />
-            </div>
-          ))
-        : "loding..."}
+      <div className="image">
+        <div id="row1">
+          {url
+            ? url.map((ur) => (
+                <img
+                  key={ur.id}
+                  className={`img`}
+                  src={ur.urls.raw}
+                  loading="lazy"
+                />
+              ))
+            : "loding..."}
+        </div>
+      </div>
+      <button id="refresh" className={`w-10 h-auto p-3`} onClick={run}>
+        Refresh
+      </button>
     </>
   );
 }

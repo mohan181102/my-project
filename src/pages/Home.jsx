@@ -9,7 +9,12 @@ import Feed from "./Feed";
 function Home() {
   const value = useSelector((state) => state.auth.userdata);
   const [user, setuser] = useState(null);
-
+  const [name, setname] = useState(null);
+  setTimeout(() => {
+    if (user.userdata.name != null) {
+      setname(user.userdata.name);
+    }
+  }, 1000);
   useEffect(() => {
     user ? (
       ""
@@ -18,6 +23,8 @@ function Home() {
     );
     setuser(value);
   }, []);
+
+  // let name = user.userdata.name;
 
   if (user == null) {
     return (
@@ -41,12 +48,11 @@ function Home() {
             <h1
               className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
             >
-              Welcome {user.userdata.name} &#128591;
+              Welcome {name ? name : ""} &#128591;
             </h1>
           </div>
-          <div className={`image`}>
-            <Feed />
-          </div>
+
+          <Feed />
         </Container>
       </div>
     );
