@@ -37,6 +37,23 @@ export class Authservice{
 
     }
 
+    async unplashset({unplash_name, email }){
+        try {
+            return await this.databases.createDocument(
+                conf.APPWRITE_DATABASE_ID,
+                conf.APPWRITE_UNPLASH_ID,
+                ID.unique(),
+            
+                {
+                    unplash_name,
+                    email
+                }
+            )
+        } catch (error) {
+            console.log("error from unplash:- ",error)
+        }
+    }
+
     async postupdate(slug,{title,content,featuredimage,status,userID}){
         try {
             return await this.databases.updateDocument(conf.APPWRITE_DATABASE_ID,conf.APPWRITE_COLLECTION_ID,slug,{
@@ -64,6 +81,19 @@ export class Authservice{
         }
     }
 
+    async getunplash(){
+        try {
+            const userdata = await authservice.getcurrentuser()
+            const Email = userdata.email
+            return await this.databases.listDocuments(
+                conf.APPWRITE_DATABASE_ID,
+                conf.APPWRITE_UNPLASH_ID,
+                [Query.equal('email',[Email])]
+            )
+        } catch (error) {
+            console.log("error from getunplash:- ",error)
+        }
+    }
     async getpost(slug){
         try {
             return await this.databases.getDocument(

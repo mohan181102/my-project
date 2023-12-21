@@ -11,13 +11,16 @@ function Logoutbtn() {
   const logoutbtn = () => {
     authservice.Logout().then(() => {
       dispatch(logout());
+      navigate("/");
+      window.location.reload();
+      alert("You are logout!");
     });
-    navigate("/");
   };
   return (
     <div
       className=" cursor-pointer inline-block px-6 py-2 duration-150 hover:bg-blue-500 rounded-full"
       onClick={logoutbtn}
+      id="logout"
     >
       Logout
     </div>

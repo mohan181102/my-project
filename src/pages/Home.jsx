@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import authservice from "../Appwrite/Auth";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
-import "./Home.css";
 import ReactLoading from "react-loading";
 import Feed from "./Feed";
 
@@ -10,11 +9,13 @@ function Home() {
   const value = useSelector((state) => state.auth.userdata);
   const [user, setuser] = useState(null);
   const [name, setname] = useState(null);
+
   setTimeout(() => {
     if (user.userdata.name != null) {
       setname(user.userdata.name);
     }
   }, 1000);
+
   useEffect(() => {
     user ? (
       ""

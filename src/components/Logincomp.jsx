@@ -23,14 +23,15 @@ function Login() {
       console.log(data);
       const sesion = await authservice.login(data).catch((er) => er);
       if (sesion) {
-        const userdata = await authservice.getcurrentuser().catch((er) => console.log(er));
+        const userdata = await authservice
+          .getcurrentuser()
+          .catch((er) => console.log(er));
 
         if (userdata) {
           dispatch(storelogin(userdata));
           document.getElementById("loader").style.display = "none";
         }
         navigate("/");
-        console.log("after navigate");
       }
     } catch (error) {
       console.log(error.message);
