@@ -40,7 +40,7 @@ function Singup() {
         className={`mx-auto w-full max-w-lg bg-gray-200 rounded-xl p-10 border border-black `}
       >
         <div className={`mb-2 flex justify-center`}>
-          <span className={`inline-block w-full max-w-[100px]`}>
+          <span className={`changediv inline-block w-full max-w-[100px]`}>
             <Logo width="100%" />
           </span>
         </div>

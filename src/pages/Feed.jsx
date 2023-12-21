@@ -65,8 +65,9 @@ function Feed() {
                   <img
                     key={ur.id}
                     className={`img`}
-                    src={ur.urls.raw}
+                    src={ur.urls.full}
                     loading="lazy"
+                    onClick={() => window.open(`${ur.urls.full}`)}
                   />
                 ))
               : "loding..."}

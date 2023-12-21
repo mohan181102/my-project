@@ -44,7 +44,7 @@ function Header() {
       <header id="header" className="py-3 shadow bg-gray-400">
         <Container>
           <nav className="flex">
-            <div className=" sm:bg-white logo mr-4">
+            <div id="logo" className="  mr-4">
               <Link to="/">
                 <Logo width="70px" />
               </Link>
