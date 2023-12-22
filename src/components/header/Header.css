@@ -3,6 +3,52 @@
     padding: 0px;
 }
 
+#logo{
+    border: 2px solid white;
+    /* position: fixed; */
+    width: 40px;
+    height: 40px;
+    left: 0px;
+    border-radius: 0.3rem;
+    padding: 5px;
+    margin-bottom: 4px;
+    margin-left: 10px;
+    animation: logoanimation;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes logoanimation{
+    0%{
+        background-image: linear-gradient(
+            180deg,
+            transparent,
+            rgba(37,37,37,0.5)
+            white
+        );
+        display: absolute;
+    }
+    50%{
+        background-image: linear-gradient(
+            180deg,
+            transparent,
+            rgba(37,37,37,0.7)
+            white
+        );
+        display: absolute;
+    }
+    100%{
+        background-image: linear-gradient(
+            180deg,
+            transparent,
+            rgba(37,37,37,0.5)
+            white
+        );
+        display: absolute;
+    }
+}
 @media only screen and (max-width:600px) {
     #header{
         width: 100vw;
@@ -61,7 +107,7 @@
         padding: 5px;
         margin-bottom: 4px;
         margin-left: 10px;
-        animation:logoanimation;
+        animation: logoanimation;
         animation-duration: 1s;
         animation-delay: 0.3s;
         animation-iteration-count: infinite;

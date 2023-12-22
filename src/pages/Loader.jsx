@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 
 function Loader({ children }) {
-  return <div>{children ? children : "loading.."}</div>;
+  const [load, setload] = useState(false);
+
+  return <div id="loaddiv"> {children} </div>;
 }
 
 export default Loader;

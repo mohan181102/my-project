@@ -52,9 +52,8 @@ function Home() {
               Welcome {name ? name : ""} &#128591;
             </h1>
           </div>
-
-          <Feed />
         </Container>
+        <Feed />
       </div>
     );
 }

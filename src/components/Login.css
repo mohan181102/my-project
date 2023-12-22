@@ -3,8 +3,23 @@
     margin: 0px;
 }
 
+
 #loader{
+    height: 100vh;
+    z-index: 1; 
+    width: 100vw;
+    opacity: 1;
+    background-color:black;
+    position: fixed;
     display: none;
+    padding-top:65%;
+    overflow: hidden;
+}
+ 
+
+#load{
+    margin-left: auto;
+    margin-right: auto; 
 }
  
 @media (max-width:600px) {

@@ -9,7 +9,7 @@ import authservice from "../Appwrite/Auth";
 import Loader from "./Loader";
 
 function Feed() {
-  // set unplash frontend value
+  const [load, setload] = useState(false);
   const [unplashvalue, setunplashvalue] = useState(null);
   const [show, setshow] = useState(null);
   const [data, setdata] = useState(null);
@@ -64,6 +64,7 @@ function Feed() {
                     <img
                       key={ur.id}
                       className={`img`}
+                      id="imgload"
                       src={ur.urls.full}
                       loading="lazy"
                       onClick={() => window.open(`${ur.urls.full}`)}
@@ -73,7 +74,7 @@ function Feed() {
               : "loding..."}
           </div>
         </div>
-        <button id="refresh" className={`w-10 h-auto p-3`} onClick={run}>
+        <button id="refresh" onClick={run}>
           Refresh
         </button>
       </>
