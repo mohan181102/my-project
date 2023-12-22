@@ -6,6 +6,7 @@ import axios from "axios";
 import authconfig from "../Appwrite/Config";
 import Container from "../components/Container";
 import authservice from "../Appwrite/Auth";
+import Loader from "./Loader";
 
 function Feed() {
   // set unplash frontend value
@@ -20,11 +21,8 @@ function Feed() {
       await authconfig
         .getunplash()
         .then((res) => res.documents)
-        .then((res) => setunplashvalue(res[0].unplash_name));
-      console.log(unplashvalue);
-      if (unplashvalue != null) {
-        setshow("not null");
-      }
+        .then((res) => setunplashvalue(res[0].unplash_name))
+        .then(() => setshow("not null"));
     }
     unplash();
   }, []);
@@ -62,13 +60,15 @@ function Feed() {
           <div id="row1">
             {url
               ? url.map((ur) => (
-                  <img
-                    key={ur.id}
-                    className={`img`}
-                    src={ur.urls.full}
-                    loading="lazy"
-                    onClick={() => window.open(`${ur.urls.full}`)}
-                  />
+                  <Loader key={ur.id}>
+                    <img
+                      key={ur.id}
+                      className={`img`}
+                      src={ur.urls.full}
+                      loading="lazy"
+                      onClick={() => window.open(`${ur.urls.full}`)}
+                    />
+                  </Loader>
                 ))
               : "loding..."}
           </div>
