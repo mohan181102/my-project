@@ -127,7 +127,7 @@
     border-radius: 0.5rem;
 }
 
-@media (max-width:600px) {
+@media  (max-width:600px) {
     *{
         padding: 0px;
         margin: 0px;
@@ -135,7 +135,7 @@
     .image{
         width: 100vw;
         height: 60vh;
-        
+        margin-left: 0px;
         display: flex;
         justify-content: center;
         align-items:center;
@@ -168,8 +168,7 @@
     .img:hover{
         transform: scale(1.2);
         border-radius: 0.5rem;
-        box-shadow: 4px 4px 3px black;
-        background-color: black;
+        
     }
     #refresh{
         width: 25%;

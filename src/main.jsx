@@ -13,6 +13,7 @@ import Authlayout from "./components/Authlayout";
 import AddPost from "./pages/Postform";
 import Editpost from "./pages/Editpost";
 import Post from "./pages/Post";
+import Search from "./components/Search.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: `/`,
         element: <Home />,
+      },
+      {
+        path: `/search`,
+        element: <Search />,
       },
       {
         path: "/login",

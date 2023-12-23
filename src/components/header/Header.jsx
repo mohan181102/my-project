@@ -13,6 +13,11 @@ function Header() {
   const navigate = useNavigate();
   const navitem = [
     {
+      name: "search",
+      slug: "/search",
+      active: authstatus,
+    },
+    {
       name: "Home",
       slug: "/",
       active: true,
@@ -53,7 +58,7 @@ function Header() {
             <ul className="nav_item flex ml-auto">
               {navitem.map((item) =>
                 item.active ? (
-                  <li className={`nav_li px-4`} key={item.name}>
+                  <li className={`nav_li px-4 `} key={item.name}>
                     <button
                       onClick={() => navigate(item.slug)}
                       className="inline-block py-2 duration-200 hover:transparent hover:text-black hover:rounded-xl hover:w-full "

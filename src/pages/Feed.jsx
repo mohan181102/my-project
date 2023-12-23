@@ -56,6 +56,7 @@ function Feed() {
   if (show != null) {
     return (
       <>
+        {console.log(url)}
         <div className="image">
           <div id="row1">
             {url
@@ -63,11 +64,12 @@ function Feed() {
                   <Loader key={ur.id}>
                     <img
                       key={ur.id}
-                      className={`img`}
+                      className={`img hover:bg-gradient-to-r from-purple-500 to-pink-500`}
                       id="imgload"
-                      src={ur.urls.full}
+                      src={ur.urls.small}
                       loading="lazy"
-                      onClick={() => window.open(`${ur.urls.full}`)}
+                      sizes="(min-width: 1335px) 410.6666666666667px, (min-width: 992px) calc(calc(100vw - 88px) / 3), (min-width: 768px) calc(calc(100vw - 64px) / 2), 100vw"
+                      onClick={() => window.open(`${ur.urls.raw}`)}
                     />
                   </Loader>
                 ))
@@ -80,27 +82,29 @@ function Feed() {
       </>
     );
   } else {
-    return (
-      <>
-        <div className="unplashbox">
-          <h2 id="h2unplash">what is your favroute thing</h2>
-          <p id="puunplash">
-            you can see beutiful images related to your word.
-          </p>
-          <Container>
-            <input
-              id="input"
-              onChange={(e) => setdata(e.target.value)}
-              placeholder="think and write"
-            />
+    setTimeout(() => {
+      return (
+        <>
+          <div className="unplashbox">
+            <h2 id="h2unplash">what is your favroute thing</h2>
+            <p id="puunplash">
+              you can see beutiful images related to your word.
+            </p>
+            <Container>
+              <input
+                id="input"
+                onChange={(e) => setdata(e.target.value)}
+                placeholder="think and write"
+              />
 
-            <button id="submit" onClick={unplashset}>
-              Submit
-            </button>
-          </Container>
-        </div>
-      </>
-    );
+              <button id="submit" onClick={unplashset}>
+                Submit
+              </button>
+            </Container>
+          </div>
+        </>
+      );
+    }, 2000);
   }
 }
 
