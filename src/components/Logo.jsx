@@ -3,7 +3,7 @@ import React from "react";
 function Logo() {
   return (
     <div
-      className={` bg-gradient-to-r from-cyan-500 to-blue-500 animate-spin w-full `}
+      className={`  `}
       id="logoutanimation"
     >
       <img
