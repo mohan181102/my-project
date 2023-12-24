@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import authservice from "../Appwrite/Auth";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
@@ -10,18 +9,17 @@ function Home() {
   const [user, setuser] = useState(null);
   const [name, setname] = useState(null);
 
-  setTimeout(() => {
-    if (user.userdata.name != null) {
-      setname(user.userdata.name);
-    }
-  }, 1000);
-
   useEffect(() => {
-    user ? (
-      ""
-    ) : (
-      <ReactLoading type={"bars"} width={90} height={90} color={"white"} />
-    );
+    setTimeout(() => {
+      if (user.userdata.name != null) {
+        setname(user.userdata.name);
+      }
+    });
+    if (user == null && name != null) {
+      <ReactLoading type={"bars"} width={90} height={90} color={"white"} />;
+    } else {
+      return;
+    }
     setuser(value);
   }, []);
 

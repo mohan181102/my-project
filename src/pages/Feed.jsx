@@ -51,6 +51,7 @@ function Feed() {
     console.log("email is", email.email);
     await authconfig.unplashset({ unplash_name: data, email: email.email });
     console.log("done");
+    window.location.reload;
   }
 
   if (show != null) {
@@ -82,29 +83,27 @@ function Feed() {
       </>
     );
   } else {
-    setTimeout(() => {
-      return (
-        <>
-          <div className="unplashbox">
-            <h2 id="h2unplash">what is your favroute thing</h2>
-            <p id="puunplash">
-              you can see beutiful images related to your word.
-            </p>
-            <Container>
-              <input
-                id="input"
-                onChange={(e) => setdata(e.target.value)}
-                placeholder="think and write"
-              />
+    return (
+      <>
+        <div className="unplashbox">
+          <h2 id="h2unplash">what is your favroute thing</h2>
+          <p id="puunplash">
+            you can see beutiful images related to your word.
+          </p>
+          <Container>
+            <input
+              id="input"
+              onChange={(e) => setdata(e.target.value)}
+              placeholder="think and write"
+            />
 
-              <button id="submit" onClick={unplashset}>
-                Submit
-              </button>
-            </Container>
-          </div>
-        </>
-      );
-    }, 2000);
+            <button id="submit" onClick={unplashset}>
+              Submit
+            </button>
+          </Container>
+        </div>
+      </>
+    );
   }
 }
 
