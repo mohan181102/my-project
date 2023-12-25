@@ -15,12 +15,12 @@ function Home() {
         setname(user.userdata.name);
       }
     });
-    if (user == null && name != null) {
-      <ReactLoading type={"bars"} width={90} height={90} color={"white"} />;
+    if (user == null) {
+      setuser(value);
     } else {
       return;
     }
-    setuser(value);
+    
   }, []);
 
   // let name = user.userdata.name;
