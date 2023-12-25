@@ -144,6 +144,7 @@
     position: relative;
     bottom: 130px;
     border-radius: 0.5rem;
+    
 }
 
 @media only screen and  (max-width:600px) {
@@ -271,6 +272,7 @@
         position: relative;
         bottom: 130px;
         border-radius: 0.5rem;
+        display:fixed;
     }
 
     #submit{
