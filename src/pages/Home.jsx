@@ -11,11 +11,6 @@ function Home() {
   const [show, setshow] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (user.userdata.name != null) {
-        setname(user.userdata.name);
-      }
-    });
     if (user == null && value != null) {
       setuser(value);
       setshow(false);
@@ -41,7 +36,7 @@ function Home() {
           <h1
             className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
           >
-            Welcome {name ? name : ""} &#128591;
+            Welcome {user.userdata.name} &#128591;
           </h1>
         </div>
       </Container>

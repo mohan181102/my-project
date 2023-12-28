@@ -65,7 +65,7 @@ function Feed() {
                   <Loader key={ur.id}>
                     <img
                       key={ur.id}
-                      className={`img hover:bg-gradient-to-r from-purple-500 to-pink-500`}
+                      className={`img`}
                       id="imgload"
                       src={ur.urls.small}
                       loading="lazy"
