@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../Container";
 import Logo from "../Logo";
 import Logoutbtn from "./Logoutbtn";
@@ -9,13 +9,21 @@ import "./Header.css";
 import authservice from "../../Appwrite/Auth";
 
 function Header() {
-  const authstatus = useSelector((state) => state.auth.status);
+  const storestatus = useSelector((state) => state.auth.status);
+  const [status, setstatus] = useState(false);
+  async function stats() {
+    return await authservice
+      .getcurrentuser()
+      .then((res) => setstatus(res ? true : false));
+  }
+  stats();
   const navigate = useNavigate();
+  console.log(status);
   const navitem = [
     {
       name: "search",
       slug: "/search",
-      active: authstatus,
+      active: storestatus,
     },
     {
       name: "Home",
@@ -25,22 +33,22 @@ function Header() {
     {
       name: "Login",
       slug: "/login",
-      active: !authstatus,
+      active: !storestatus,
     },
     {
       name: "Singup",
       slug: "/singup",
-      active: !authstatus,
+      active: !storestatus,
     },
     {
       name: "Allpost",
       slug: "/allpost",
-      active: authstatus,
+      active: storestatus,
     },
     {
       name: "AddPost",
       slug: "/add-post",
-      active: authstatus,
+      active: storestatus,
     },
   ];
 
@@ -69,7 +77,7 @@ function Header() {
                 ) : null
               )}
 
-              {authstatus && (
+              {status && (
                 <li className="nav_li">
                   <Logoutbtn />
                 </li>
