@@ -11,13 +11,14 @@ function Home() {
   const [show, setshow] = useState(true);
 
   useEffect(() => {
-    console.log(value);
+    setTimeout(() => {
+      if (user.userdata.name != null) {
+        setname(user.userdata.name);
+      }
+    });
     if (user == null && value != null) {
       setuser(value);
       setshow(false);
-    }
-    if (user != null && value != null) {
-      setname(user.userdata.name);
     }
   }, []);
 
