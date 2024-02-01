@@ -1,0 +1,43 @@
+
+#image{
+    background-color: grey;
+    border-radius: 0.3rem;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#image::-webkit-scrollbar{
+    display: none;
+}
+
+#perimage{
+    width: 180px;
+    height: auto;
+    margin: 20px;
+}
+
+#perli{
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
+
+#perli:hover{
+    background-color: white;
+    border-radius: 0.3rem;
+}
+
+@media (max-width:600px) {
+    #inpt{
+        height: 40px;
+        position: relative;
+        top: 60px;
+    }
+    #image{
+        position: relative;
+        top: 70px;
+    }
+}

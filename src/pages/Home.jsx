@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
-import ReactLoading from "react-loading";
-import Feed from "./Feed";
 
 function Home() {
   const value = useSelector((state) => state.auth.userdata);
@@ -36,11 +34,10 @@ function Home() {
           <h1
             className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
           >
-            Welcome {user.userdata.name} &#128591;
+            Welcome {user ? user.userdata.name : ""} &#128591;
           </h1>
         </div>
       </Container>
-      <Feed />
     </div>
   );
 }

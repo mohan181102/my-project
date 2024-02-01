@@ -6,13 +6,16 @@
 
 #loader{
     height: 100vh;
-    z-index: 1; 
+    z-index: 100; 
     width: 100vw;
     opacity: 1;
     background-color:black;
     position: fixed;
     display: none;
-    padding-top:65%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    top: 0px;
     overflow: hidden;
 }
  

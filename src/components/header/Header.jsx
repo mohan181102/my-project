@@ -52,18 +52,23 @@ function Header() {
     },
   ];
 
+  function scale() {
+    console.log("reac");
+    document.getElementById("nav_item").style.scale = "1";
+  }
+
   return (
     <>
       <header id="header" className="py-3 shadow bg-gray-400">
         <Container>
-          <nav className="flex">
+          <nav className="flex nav">
             <div id="logo" className="  mr-4">
               <Link to="/">
                 <Logo width="70px" />
               </Link>
             </div>
 
-            <ul className="nav_item flex ml-auto">
+            <ul id="nav_item" className="nav_item flex ml-auto">
               {navitem.map((item) =>
                 item.active ? (
                   <li className={`nav_li px-4 `} key={item.name}>
@@ -82,7 +87,19 @@ function Header() {
                   <Logoutbtn />
                 </li>
               )}
+              <button
+                id="cross"
+                onClick={() =>
+                  (document.getElementById("nav_item").style.scale = "0")
+                }
+              >
+                &#10060;
+              </button>
             </ul>
+            <h2 id="globalname">Global gallery</h2>
+            <button id="forphone" onClick={() => scale()}>
+              NAV
+            </button>
           </nav>
         </Container>
       </header>

@@ -34,19 +34,21 @@ function Login() {
         navigate("/");
       }
     } catch (error) {
+      document.getElementById("loader").style.display = "none";
+      window.alert("Something went wrong");
       console.log(error.message);
     }
   };
   return (
     <div className="flex items-center justify-center w-full">
-      <div id="loader" className={`fixed`}>
+      <div id="loader" className={``}>
         <ReactLoading
           id="load"
           className={``}
           type={"bars"}
           color={"white"}
-          width={90}
-          height={90}
+          width={60}
+          height={60}
         />
       </div>
 
