@@ -21,7 +21,7 @@ function Header() {
   console.log(status);
   const navitem = [
     {
-      name: "search",
+      name: "Search",
       slug: "/search",
       active: storestatus,
     },
@@ -74,6 +74,7 @@ function Header() {
                   <li className={`nav_li px-4 `} key={item.name}>
                     <button
                       onClick={() => navigate(item.slug)}
+                      id="nav_btn"
                       className="inline-block py-2 duration-200 hover:transparent hover:text-black hover:rounded-xl hover:w-full "
                     >
                       {item.name}

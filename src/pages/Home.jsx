@@ -5,17 +5,15 @@ import { useSelector } from "react-redux";
 function Home() {
   const value = useSelector((state) => state.auth.userdata);
   const [user, setuser] = useState(null);
-  const [name, setname] = useState(null);
-  const [show, setshow] = useState(true);
 
   useEffect(() => {
     if (user == null && value != null) {
       setuser(value);
-      setshow(false);
+      console.log("name", name);
     }
   }, []);
 
-  return show ? (
+  return value == null ? (
     <div className={`w-full py-8 mt-4 text-center`}>
       <Container>
         <div className={`flex flex-wrap `}>
@@ -34,7 +32,7 @@ function Home() {
           <h1
             className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
           >
-            Welcome {user ? user.userdata.name : ""} &#128591;
+            Welcome&#128591;
           </h1>
         </div>
       </Container>

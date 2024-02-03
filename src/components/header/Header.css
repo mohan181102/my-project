@@ -1,184 +1,9 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
-
-#logo{
-    border: 2px solid white;
-    /* position: fixed; */
-    width: 40px;
-    height: 40px;
-    left: 0px;
-    border-radius: 0.3rem;
-    padding: 5px;
-    margin-bottom: 4px;
-    margin-left: 10px;
-    animation: logoanimation;
-    animation-duration: 1s;
-    animation-delay: 0.3s;
-    animation-iteration-count: infinite;
-
-}
-
-.nav_li{
-    /* border: 1px solid black; */
-    font-size: large;
+@media (max-width:1280px) {
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
     
-}
-
-#globalname{
-    position: absolute;
-    left: 180px;
-    background-color: white;
-    width: auto;
-    height: 40px;
-    padding: 10px;
-    font-size: larger;
-    font-weight: 700;
-    border-radius: 0.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-@media (max-width:768px) {
-    #globalname{
-        display: none;
-        
-        
-    }
-}
-
-@keyframes logoanimation{
-    0%{
-        background-image: linear-gradient(
-            180deg,
-            transparent,
-            rgba(37,37,37,0.5)
-            white
-        );
-        display: absolute;
-    }
-    50%{
-        background-image: linear-gradient(
-            180deg,
-            transparent,
-            rgba(37,37,37,0.7)
-            white
-        );
-        display: absolute;
-    }
-    100%{
-        background-image: linear-gradient(
-            180deg,
-            transparent,
-            rgba(37,37,37,0.5)
-            white
-        );
-        display: absolute;
-    }
-}
-
-
-#forphone{
-    display: none;
-}
-
-#cross{
-    display: none;
-}
-@media only screen and (max-width:600px) {
-    #header{
-        width: 100vw;
-        color: white;
-        height: 60px;
-        background-color: black;
-        /* display: absolute; */
-        position: fixed;
-        z-index: 1;
-        justify-content: space-around;
-        object-fit: contain;
-    }
-    .nav_item{
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        scale:0;
-        z-index: 200;
-        background-color:black;
-        color: white;
-        right: 0px;
-        top: 0px;
-         /* width: fit-content; */
-        /* border: 1px solid green; */
-         height: 100%;
-        transition: 80ms;
-        transition-timing-function: ease-in;
-
-        /* position: fixed; */
-         
-        
-    }
-    #forphone{
-        display: block;
-        background-color: rgb(255, 255, 255);
-        color: black;
-        font-size: large;
-        padding-left: 10px;
-        padding-right: 10px;
-        position: fixed;
-        right: 5px;
-        width: fit-content;
-        border: 0px transparent;
-        font-weight: 600;
-
-    }
-
-    #cross{
-        display: block;
-        height: auto;
-        padding: 10px;
-        border: 2px solid white;
-        border-radius: 100%;
-       margin-top: 100px;
-       background-color: black;
-       color: white;
-    }
-
-    .nav{
-        display: flex;
-        /* justify-content: center; */
-        align-items: center;
-    }
-    .nav_li{
-        margin-bottom: 4px;
-        margin-right: 2px;
-        display: flex;
-        align-items: center;
-        padding: 4px;
-        background-color: black;
-        width: 60px;
-        font-size: 0.8rem;
-        justify-content: center;
-        border-radius: 1.3rem;
-        color: white;
-        border: 2px solid white;
-    }
-    .nav_li:hover{
-        background-color: white;
-        color: white;
-        
-        background-image: linear-gradient(
-            280deg,
-            transparent,
-            rgba(37,37,37,0.5)
-        );
-    }
-
-    
-
     #logo{
         border: 2px solid white;
         /* position: fixed; */
@@ -187,16 +12,55 @@
         left: 0px;
         border-radius: 0.3rem;
         padding: 5px;
-        
         margin-bottom: 4px;
         margin-left: 10px;
         animation: logoanimation;
         animation-duration: 1s;
         animation-delay: 0.3s;
         animation-iteration-count: infinite;
-
+    
     }
-
+    
+    .nav_li{
+        /* border: 1px solid black; */
+        font-size: large;
+        
+    }
+    .nav_li:hover{
+        background-color: white;
+        border-radius: 0.2rem;
+    }
+    
+    #nav_btn{
+        font-size: large;
+    }
+    
+    
+    
+    #globalname{
+        position: absolute;
+        left: 180px;
+        background-color: white;
+        width: auto;
+        height: 40px;
+        padding: 10px;
+        font-size: larger;
+        font-weight: 700;
+        border-radius: 0.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    @media (max-width:768px) {
+        #globalname{
+            display: none;
+            
+            
+        }
+    }
+    
     @keyframes logoanimation{
         0%{
             background-image: linear-gradient(
@@ -226,7 +90,157 @@
             display: absolute;
         }
     }
-
- 
-
+    
+    
+    #forphone{
+        display: none;
+    }
+    
+    #cross{
+        display: none;
+    }
+    @media only screen and (max-width:600px) {
+        #header{
+            width: 100vw;
+            color: white;
+            height: 60px;
+            background-color: black;
+            /* display: absolute; */
+            position: fixed;
+            z-index: 1;
+            justify-content: space-around;
+            object-fit: contain;
+        }
+        .nav_item{
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            scale:0;
+            z-index: 200;
+            background-color:black;
+            color: white;
+            right: 0px;
+            top: 0px;
+             width:90px;
+    
+            /* border: 1px solid green; */
+             height: 100%;
+            transition: 80ms;
+            transition-timing-function: ease-in;
+    
+            /* position: fixed; */
+             
+            
+        }
+        #forphone{
+            display: block;
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-size: large;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: fixed;
+            right: 5px;
+            width: fit-content;
+            border: 0px transparent;
+            font-weight: 600;
+    
+        }
+    
+        #cross{
+            display: block;
+            height: auto;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 100%;
+           margin-top: 100px;
+           background-color: black;
+           color: white;
+        }
+    
+        .nav{
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+        }
+        .nav_li{
+            margin-bottom: 4px;
+            margin-right: 2px;
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            background-color: black;
+            width: 60px;
+            font-size: 0.8rem;
+            justify-content: center;
+            border-radius: 1.3rem;
+            color: white;
+            border: 2px solid white;
+        }
+        .nav_li:hover{
+            background-color: white;
+            color: white;
+            
+            background-image: linear-gradient(
+                280deg,
+                transparent,
+                rgba(37,37,37,0.5)
+            );
+        }
+    
+        
+    
+        #logo{
+            border: 2px solid white;
+            /* position: fixed; */
+            width: 40px;
+            height: 40px;
+            left: 0px;
+            border-radius: 0.3rem;
+            padding: 5px;
+            
+            margin-bottom: 4px;
+            margin-left: 10px;
+            animation: logoanimation;
+            animation-duration: 1s;
+            animation-delay: 0.3s;
+            animation-iteration-count: infinite;
+    
+        }
+    
+        @keyframes logoanimation{
+            0%{
+                background-image: linear-gradient(
+                    180deg,
+                    transparent,
+                    rgba(37,37,37,0.5)
+                    white
+                );
+                display: absolute;
+            }
+            50%{
+                background-image: linear-gradient(
+                    180deg,
+                    transparent,
+                    rgba(37,37,37,0.7)
+                    white
+                );
+                display: absolute;
+            }
+            100%{
+                background-image: linear-gradient(
+                    180deg,
+                    transparent,
+                    rgba(37,37,37,0.5)
+                    white
+                );
+                display: absolute;
+            }
+        }
+    
+     
+    
+    }
 }

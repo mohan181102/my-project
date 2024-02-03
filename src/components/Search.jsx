@@ -19,15 +19,12 @@ function Search() {
         `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${inputvalue}&client_id=${Unplash.unplash_accesskey}`
       )
       .then((res) => {
-        setdata(null), setdata(res.data.results);
+        setdata(res.data.results);
       })
       .catch((eror) => seterror(eror))
       .then(console.log("from serch page:- ", data));
   }
 
-  useEffect(() => {
-    console.log(inputvalue);
-  }, [inputvalue]);
   return (
     <div className=" w-full h-full flex  flex-col items-center content-center border-spacing-0 text-xl mt-3">
       <input
@@ -47,12 +44,12 @@ function Search() {
         {data != null && eror == null
           ? data.map((item) => {
               return (
-                <li
-                  id="perli"
-                  key={item.id}
-                  onClick={() => window.open(`${item.urls.small}`)}
-                >
-                  <img id="perimage" src={item.urls.small} />
+                <li id="perli" key={item.id}>
+                  <img
+                    id="perimage"
+                    src={item.urls.small}
+                    onClick={() => window.open(`${item.urls.raw}`)}
+                  />
                 </li>
               );
             })
