@@ -11,6 +11,9 @@ import authservice from "../../Appwrite/Auth";
 function Header() {
   const storestatus = useSelector((state) => state.auth.status);
   const [status, setstatus] = useState(false);
+  const [value, setvalue] = useState(0);
+  const windowwidth = window.innerWidth;
+  console.log("width", windowwidth);
   async function stats() {
     return await authservice
       .getcurrentuser()
@@ -18,12 +21,12 @@ function Header() {
   }
   stats();
   const navigate = useNavigate();
-  console.log(status);
+
   const navitem = [
     {
       name: "Search",
       slug: "/search",
-      active: storestatus,
+      active: status,
     },
     {
       name: "Home",
@@ -33,28 +36,28 @@ function Header() {
     {
       name: "Login",
       slug: "/login",
-      active: !storestatus,
+      active: !status,
     },
     {
       name: "Singup",
       slug: "/singup",
-      active: !storestatus,
+      active: !status,
     },
     {
       name: "Allpost",
       slug: "/allpost",
-      active: storestatus,
+      active: status,
     },
     {
       name: "AddPost",
       slug: "/add-post",
-      active: storestatus,
+      active: status,
     },
   ];
 
   function scale() {
-    console.log("reac");
-    document.getElementById("nav_item").style.scale = "1";
+    document.getElementById("nav_item").style.width = "180px";
+    setvalue(1);
   }
 
   return (
@@ -71,7 +74,11 @@ function Header() {
             <ul id="nav_item" className="nav_item flex ml-auto">
               {navitem.map((item) =>
                 item.active ? (
-                  <li className={`nav_li px-4 `} key={item.name}>
+                  <li
+                    style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
+                    className={`nav_li px-4 `}
+                    key={item.name}
+                  >
                     <button
                       onClick={() => navigate(item.slug)}
                       id="nav_btn"
@@ -84,15 +91,21 @@ function Header() {
               )}
 
               {status && (
-                <li className="nav_li">
+                <li
+                  className="nav_li"
+                  style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
+                >
                   <Logoutbtn />
                 </li>
               )}
               <button
                 id="cross"
-                onClick={() =>
-                  (document.getElementById("nav_item").style.scale = "0")
-                }
+                style={{ scale: `${value}` }}
+                onClick={() => {
+                  setvalue(0)(
+                    (document.getElementById("nav_item").style.width = "0px")
+                  );
+                }}
               >
                 &#10060;
               </button>

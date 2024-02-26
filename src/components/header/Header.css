@@ -117,14 +117,14 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            scale:0;
+            scale:(1);
             z-index: 200;
             background-color:black;
             color: white;
             right: 0px;
             top: 0px;
-             width:90px;
-    
+            width:0px;
+             
             /* border: 1px solid green; */
              height: 100%;
             transition: 80ms;
@@ -139,6 +139,7 @@
             background-color: rgb(255, 255, 255);
             color: black;
             font-size: large;
+            
             padding-left: 10px;
             padding-right: 10px;
             position: fixed;
@@ -153,8 +154,10 @@
             display: block;
             height: auto;
             padding: 10px;
+            scale: (0);
+            width: 60px;
             border: 2px solid white;
-            border-radius: 100%;
+            border-radius: 0.5rem;
            margin-top: 100px;
            background-color: black;
            color: white;
@@ -172,10 +175,13 @@
             align-items: center;
             padding: 4px;
             background-color: black;
-            width: 60px;
+            width:90px;
+           
             font-size: 0.8rem;
             justify-content: center;
             border-radius: 1.3rem;
+            scale: (0);
+             
             color: white;
             border: 2px solid white;
         }
@@ -189,6 +195,7 @@
                 rgba(37,37,37,0.5)
             );
         }
+        
     
         
     

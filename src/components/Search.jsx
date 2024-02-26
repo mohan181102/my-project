@@ -25,15 +25,18 @@ function Search() {
       .then(console.log("from serch page:- ", data));
   }
 
+  function checkevent(e) {
+    console.log(e);
+  }
+
   return (
     <div className=" w-full h-full flex  flex-col items-center content-center border-spacing-0 text-xl mt-3">
       <input
-        onLoad={() => forwhitespace}
         id="inpt"
-        className=" w-full h-16 top-16 px-5"
+        className=" w-full h-16 top-16 px-5 outline-none"
         // classNam
         onChange={(e) => {
-          setinputvalue(e.target.value), reload();
+          setinputvalue(e.target.value), checkevent(e);
         }}
       />
 

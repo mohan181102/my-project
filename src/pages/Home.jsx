@@ -9,7 +9,7 @@ function Home() {
   useEffect(() => {
     if (user == null && value != null) {
       setuser(value);
-      console.log("name", name);
+   
     }
   }, []);
 
