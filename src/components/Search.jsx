@@ -72,7 +72,7 @@ function Search() {
       </ul>
       <button
         onClick={() => setpagenumber((prev) => (parseInt(prev) + 1).toString())}
-        className={`w-40 md:z-20  h-8 hover:brightness-110 mt-2 rounded-md bg-yellow-500 text-white font-bold flex items-center justify-center  `}
+        className={`w-40 z-20  h-8 hover:brightness-110 mt-2 rounded-md bg-yellow-500 text-white font-bold flex items-center justify-center  `}
       >
         <p className=" cursor-pointer sm:z-20 md:z-20 w-full h-auto bg-yellow-500 text-white font-bold flex items-center justify-center ">
           Load more...
