@@ -5,38 +5,42 @@ import "./Search.css";
 
 function Search() {
   const [inputvalue, setinputvalue] = useState(null);
-  const [data, setdata] = useState(null);
-  const [pagenumber, setpagenumber] = useState(null);
+  const [data, setdata] = useState([]);
+  const [pagenumber, setpagenumber] = useState("1");
   const [eror, seterror] = useState(null);
 
-  async function reload() {
-    function setnum() {
-      setpagenumber(Math.floor(Math.random() * 50 + 2));
-    }
-    setnum();
+  async function recievedata() {
+    // REQUEST TO API
+    setdata([]);
+    console.log(inputvalue);
+    console.log(typeof pagenumber, pagenumber);
     await axios
       .get(
-        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${inputvalue}&client_id=${Unplash.unplash_accesskey}`
+        `https://api.unsplash.com/search/photos?page=${pagenumber}&query=${inputvalue}&client_id=ncFHfeZKBwbcp74gIp3Cs0Qqf3BOIEvjTKeWrZElUrg`
       )
       .then((res) => {
-        setdata(res.data.results);
+        console.log(res);
+        data.length == 0 ? setdata(res.data.results) : null;
       })
-      .catch((eror) => seterror(eror))
-      .then(console.log("from serch page:- ", data));
+      .then(console.log(data))
+      .catch((eror) => seterror(eror));
   }
 
-  function checkevent(e) {
-    console.log(e);
-  }
+  // CREATE LOAD MORE FUNCTION
+
+  useEffect(() => {
+    recievedata();
+  }, [pagenumber, inputvalue]);
 
   return (
-    <div className=" w-full h-full flex  flex-col items-center content-center border-spacing-0 text-xl mt-3">
+    <div className=" w-full h-full flex  flex-col items-center content-center   text-xl mt-3 ">
       <input
         id="inpt"
         className=" w-full h-16 top-16 px-5 outline-none"
         // classNam
         onChange={(e) => {
-          setinputvalue(e.target.value), checkevent(e);
+          setinputvalue(e.target.value);
+          recievedata();
         }}
       />
 
@@ -44,22 +48,36 @@ function Search() {
         id="image"
         className=" bg-blue w-full overflow-scroll  h-3/4 mt-4 flex flex-row"
       >
-        {data != null && eror == null
+        {data.length != 0
           ? data.map((item) => {
               return (
-                <li id="perli" key={item.id}>
+                <li
+                  className=" w-auto min-w-1/4 m-2 cursor-pointer hover:bg-gray-500 bg-white rounded-md  bg-cover h-auto bg-center"
+                  key={item.id}
+                >
                   <img
                     id="perimage"
-                    src={item.urls.small}
-                    onClick={() => window.open(`${item.urls.raw}`)}
+                    src={`${item.urls.small}`}
+                    onClick={() =>
+                      window.open(`${item ? item.urls.raw : null}`)
+                    }
+                    alt="not found"
                   />
                 </li>
               );
             })
           : eror != null
-          ? eror
-          : ""}
+          ? console.log(eror)
+          : "Seach any image"}
       </ul>
+      <button
+        onClick={() => setpagenumber((prev) => (parseInt(prev) + 1).toString())}
+        className={`w-40 md:z-20  h-8 hover:brightness-110 mt-2 rounded-md bg-yellow-500 text-white font-bold flex items-center justify-center  `}
+      >
+        <p className=" cursor-pointer sm:z-20 md:z-20 w-full h-auto bg-yellow-500 text-white font-bold flex items-center justify-center ">
+          Load more...
+        </p>
+      </button>
     </div>
   );
 }

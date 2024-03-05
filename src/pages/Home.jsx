@@ -9,12 +9,11 @@ function Home() {
   useEffect(() => {
     if (user == null && value != null) {
       setuser(value);
-   
     }
   }, []);
 
   return value == null ? (
-    <div className={`w-full py-8 mt-4 text-center`}>
+    <div className={`w-full py-8 mt-4  text-center`}>
       <Container>
         <div className={`flex flex-wrap `}>
           <div className="py-2 w-full ">
@@ -26,11 +25,14 @@ function Home() {
       </Container>
     </div>
   ) : (
-    <div id="main" className="w-full py-8 text-center">
+    <div
+      id="main"
+      className=" flex items-center justify-center h-full w-full py-8 text-center"
+    >
       <Container>
-        <div className="flex absolute  top-24  flex-wrap w-full">
+        <div className="flex top-24  flex-wrap w-full">
           <h1
-            className={`text-2xl font-bold hover:text-gray-200 w-full items-center`}
+            className={`text-2xl font-bold cursor-default w-full items-center`}
           >
             Welcome&#128591;
           </h1>
