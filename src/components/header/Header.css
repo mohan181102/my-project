@@ -63,11 +63,15 @@
     .forphone{
         display: none;
     }
+    
     @media screen and (max-width:680px) {
         #header{
             width: 100vw;
             color: white;
             height: 60px;
+            display: flex ;
+            align-items: center;
+            
             background-color: black;
             /* display: absolute; */
             position: fixed;

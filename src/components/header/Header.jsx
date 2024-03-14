@@ -62,16 +62,16 @@ function Header() {
 
   return (
     <>
-      <header id="header" className="py-3 shadow bg-gray-400">
+      <header id="header" className="py-3 bg-gray-300">
         <Container>
-          <nav className="flex nav w-full overscroll-scroll items-center justify-center">
+          <nav className="flex nav w-full bg-gray-500 h-auto overscroll-scroll items-center justify-center">
             <div id="logo" className="mr-4">
               <Link to="/">
                 <Logo width="70px" />
               </Link>
             </div>
 
-            <ul className="nav_item  flex h-full w-auto bg-white">
+            <ul id="nav_item" className="nav_item flex items-center ">
               {navitem.map((item) =>
                 item.active ? (
                   <li
