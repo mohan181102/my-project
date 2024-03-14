@@ -13,7 +13,7 @@ function Header() {
   const [status, setstatus] = useState(false);
   const [value, setvalue] = useState(0);
   const windowwidth = window.innerWidth;
-  console.log("width", windowwidth);
+
   async function stats() {
     return await authservice
       .getcurrentuser()
@@ -64,17 +64,23 @@ function Header() {
     <>
       <header id="header" className="py-3 shadow bg-gray-400">
         <Container>
-          <nav className="flex nav">
-            <div id="logo" className="  mr-4">
+          <nav className="flex nav w-full overscroll-scroll items-center justify-center">
+            <div id="logo" className="mr-4">
               <Link to="/">
                 <Logo width="70px" />
               </Link>
             </div>
 
-            <ul id="nav_item" className="nav_item flex ml-auto">
+            <ul className="nav_item  flex h-full w-auto bg-white">
               {navitem.map((item) =>
                 item.active ? (
                   <li
+                    onClick={() => {
+                      setvalue(0)(
+                        (document.getElementById("nav_item").style.width =
+                          "0px")
+                      );
+                    }}
                     style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
                     className={`nav_li px-4 `}
                     key={item.name}
@@ -82,7 +88,7 @@ function Header() {
                     <button
                       onClick={() => navigate(item.slug)}
                       id="nav_btn"
-                      className="inline-block py-2 duration-200 hover:transparent hover:text-black hover:rounded-xl hover:w-full "
+                      className="inline-block py-2 duration-200 hover:transparent  "
                     >
                       {item.name}
                     </button>
@@ -110,9 +116,15 @@ function Header() {
                 &#10060;
               </button>
             </ul>
-            <h2 id="globalname">Global gallery</h2>
-            <button id="forphone" onClick={() => scale()}>
-              NAV
+            <h2 className={`h2tag`}>Global gallery</h2>
+            <button
+              className={`forphone text-white w-auto h-full rounded-md fixed right-2`}
+              onClick={() => scale()}
+            >
+              <img
+                src={"/images.png"}
+                className={`w-10 h-10 bg-cover bg-center rounded-md`}
+              />
             </button>
           </nav>
         </Container>

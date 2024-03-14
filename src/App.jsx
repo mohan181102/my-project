@@ -30,7 +30,7 @@ function App() {
   return !loading ? (
     <>
       <div className="screen min-h-screen flex flex-wrap content-between bgwhite ">
-        <div className="w-full block">
+        <div className="w-full h-auto block">
           <Header />
           <main
             className={`flex items-center justify-center bg-slate-300 h-screen`}

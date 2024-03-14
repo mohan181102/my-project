@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Postform.css";
 import { useCallback } from "react";
 import { appendErrors, useForm } from "react-hook-form";
 import { Button, Select, Input } from "../index";
-import RTE from "../RTE";
 import authconfig from "../../Appwrite/Config";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../../store/postslice";
 import authservice from "../../Appwrite/Auth";
+import Toaster from "./Toaster";
 
 function Postform({ post }) {
+  const [showtoster, settoaster] = useState(false);
+  const [loader, setloader] = useState(false);
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -23,7 +25,12 @@ function Postform({ post }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userdata);
+
+  // CREATE SUBMIT FUNCTION
+
   const submit = async (data) => {
+    setloader(true);
+    console.log(data);
     if (post) {
       const file = data.image[0] ? authconfig.uploadfile(data.image[0]) : null;
       if (file) {
@@ -38,6 +45,7 @@ function Postform({ post }) {
       if (dbpost) {
         navigate(`/post/${dbpost.$id}`);
       }
+      setloader(false);
     } else {
       const elsefile = await authconfig.uploadfile(data.featuredimg[0]);
       const id = await authservice.getcurrentuser();
@@ -49,11 +57,13 @@ function Postform({ post }) {
 
         const dbpost = await authconfig.postcreate({
           ...data,
+          conntent: "null",
           userid: id.email,
         });
 
         if (dbpost) {
-          document.getElementById("submitpop").style.display = "block";
+          if (!showtoster) settoaster(true);
+          setloader(false);
           setTimeout(() => {
             navigate(`/post/${dbpost.$id}`);
           }, 1000);
@@ -83,16 +93,32 @@ function Postform({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
+  // CREATE UI
+
   return (
-    <form onSubmit={handleSubmit(submit)} className={`form flex flex-wrap `}>
-      <div className={`w-2/3 px-2`}>
+    <form
+      onSubmit={handleSubmit(submit)}
+      className={`form bg-white w-full min-h-fit rounded-md p-10 flex flex-wrap `}
+    >
+      {showtoster ? <Toaster information={"Succsefull upload!!"} /> : null}
+      <h2
+        className={`w-full h-10 text-3xl flex items-center justify-start mb-2 cursor-default font-bold text-gray-400 `}
+      >
+        Create your personal post
+      </h2>
+      <div className={`w-full h-auto px-2`}>
+        {/* TITLE */}
+
         <Input
           label="Title :"
-          className="mb-4 title"
+          className="mb-4 title hover:bg-gray-300"
+          placeholder={"write title"}
           {...register("title", {
             required: true,
           })}
         />
+
+        {/* SLUG */}
 
         <Input
           label="Slug :"
@@ -107,16 +133,9 @@ function Postform({ post }) {
             });
           }}
         />
-
-        <RTE
-          label="Content: "
-          name="conntent"
-          
-          control={control}
-          defaultvalue={getValues("content")}
-          {...register("conntent", { required: true })}
-        />
       </div>
+
+      {/* FEATURE IMAGE */}
 
       <div className={`w-1/3 px-2`}>
         <Input
@@ -128,6 +147,8 @@ function Postform({ post }) {
           {...register("featuredimg", { required: !post })}
         />
 
+        {/* FEATURE IMG */}
+
         {post && (
           <div className="w-full mb-4">
             <img
@@ -137,6 +158,8 @@ function Postform({ post }) {
             />
           </div>
         )}
+
+        {/* select */}
 
         <Select
           options={["active", "inactive"]}
@@ -148,13 +171,11 @@ function Postform({ post }) {
         <Button
           type="submit"
           bgcolor="primary"
-          className={`bg-blue-500`}
-          children={post ? "Update" : "Submit"}
+          className={`bg-green-500 w-full text-white text-xl font-semibold  ${
+            loader ? "bg-orange-300" : ""
+          }`}
+          children={post ? "Update" : loader ? "Uploading..." : "Submit"}
         />
-
-        <div id="submitpop">
-          <p id="popupmsg">Post create</p>
-        </div>
       </div>
     </form>
   );
