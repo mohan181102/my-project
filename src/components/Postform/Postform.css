@@ -19,7 +19,8 @@
     .form{
         height: auto;
         display: flex;
-        width: auto;
+        width: 90%;
+        margin-left: 5%;
         padding-left: 20px;
         padding-right: 20px;
         align-items:center;

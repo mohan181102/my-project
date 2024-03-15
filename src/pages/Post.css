@@ -9,7 +9,36 @@
 }
 @media (max-width:600px) {
     .post{
-        background-color:lightblue;
-        border: 1px solid black;
+        width: 100%;
+        min-height: 50%;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+        background-color: white;
+
+    }
+    .title-div{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    .title{
+        animation-name: translat;
+        animation-duration: 5s;
+        transition: all 300ms;
+        text-align: right;
+        animation-iteration-count: infinite;
+        width: auto;
+        transition-delay: 0ms;
+        animation-delay: 3s;
+        overflow: hidden;
+    }
+    @keyframes translat {
+        from{
+            transform: translateX(100%);
+        }to{
+            transform: translateX(-100%);
+        }
+
     }
 }

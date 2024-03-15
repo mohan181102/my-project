@@ -15,8 +15,7 @@ export default function Post() {
 
   const userData = useSelector((state) => state.auth.userdata);
 
-  // const isauthor = post ? true :false;
-  const isauthor = authservice.getcurrentuser();
+  const isauthor = post ? true : false;
 
   useEffect(() => {
     if (slug) {
@@ -45,6 +44,10 @@ export default function Post() {
   function bigimg() {
     window.open(authconfig.getfile(post.featuredimg), "_blank");
   }
+
+  function stopanimation() {
+    document.getElementById("title").style.animation = "none";
+  }
   return post && isauthor ? (
     <div className="py-8">
       <Container>
@@ -59,7 +62,7 @@ export default function Post() {
             className="rounded-xl"
           />
 
-          {isauthor ? (
+          {post != null ? (
             <div
               className={` w-3/4 h-10 bg-transparent absolute flex items-center justify-end gap-1 right-2 rounded-md `}
             >
@@ -82,9 +85,15 @@ export default function Post() {
               </Link>
             </div>
           ) : null}
-          <div className="w-full mb-6 h-fit">
-            <h1 className="text-2xl font-bold flex items-center justify-center">
-              {post.title}
+          <div
+            className="title-div w-full mb-6 h-fit "
+            onMouseEnter={stopanimation}
+          >
+            <h1
+              id="title"
+              className="title text-2xl font-bold flex items-center justify-center"
+            >
+              Title :- {post.title}
             </h1>
           </div>
         </div>
