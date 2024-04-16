@@ -8,7 +8,6 @@
     
     #logo{
         border: 2px solid white;
-        position: absolute;
         background-color:  white;
         width: 40px;
         height: 40px;
@@ -16,43 +15,12 @@
         border-radius: 0.3rem;
         padding: 5px;
         margin-bottom: 4px;
-        margin-left: 10px;
-        animation: logoanimation;
-        animation-duration: 1s;
-        animation-delay: 0.3s;
-        animation-iteration-count: infinite;
-    
-    }
-    
-    .nav_li{
-        /* border: 1px solid black; */
-        font-size: large;
-        
-    }
-   
+        margin-left: 10px;    
+    }   
     
     #nav_btn{
         font-size: large;
-    }
-    
-    
-    
-    .h2tag{
-        position: absolute;
-        left: 180px;
-        background-color: white;
-        width: auto;
-        height: 40px;
-        padding: 10px;
-        font-size: larger;
-        font-weight: 700;
-        border-radius: 0.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-     
+    }     
     
   
     
@@ -87,6 +55,7 @@
             flex-direction: column;
             scale:(1);
             z-index: 200;
+            padding: 0px;
             background-color:black;
             color: white;
             right: 0px;
@@ -102,6 +71,16 @@
              
             
         }
+
+        .h2tag{
+            width: auto;
+            padding: 2px;
+            height: auto;
+            font-size: 1rem;
+            margin-left: 10px;
+
+        }
+        
        
     
         #cross{
@@ -157,6 +136,8 @@
             color: white;
             border: 2px solid white;
         }
+
+        
         .nav_li:hover{
             background-color: white;
             color: white;

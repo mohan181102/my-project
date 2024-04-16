@@ -15,13 +15,19 @@ function Login() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, seterror] = useState(null);
+  const [loader, setloader] = useState(false);
 
   const login = async (data) => {
     seterror("");
-    document.getElementById("loader").style.display = "block";
     try {
       console.log(data);
-      const sesion = await authservice.login(data).catch((er) => er);
+      const sesion = await authservice
+        .login(data)
+        .catch((error) => {
+          (er) => seterror(er), window.alert("Ops, Something went wrong! ");
+          console.log(error);
+        })
+        .finally(setloader(false));
       if (sesion) {
         const userdata = await authservice
           .getcurrentuser()
@@ -29,29 +35,18 @@ function Login() {
 
         if (userdata) {
           dispatch(storelogin(userdata));
-          document.getElementById("loader").style.display = "none";
         }
         navigate("/");
       }
     } catch (error) {
-      document.getElementById("loader").style.display = "none";
       window.alert("Something went wrong");
       console.log(error.message);
+      setloader(false);
     }
   };
+
   return (
     <div className="flex items-center justify-center w-full">
-      <div id="loader" className={``}>
-        <ReactLoading
-          id="load"
-          className={``}
-          type={"bars"}
-          color={"white"}
-          width={60}
-          height={60}
-        />
-      </div>
-
       <div
         className={`formdiv mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black`}
       >
@@ -84,9 +79,10 @@ function Login() {
             />
             <button
               type="submit"
+              onClick={() => setloader(true)}
               className={` bg-blue-300 w-auto rounded-lg h-auto p-3 items-center`}
             >
-              Sign in
+              {loader ? "loading..." : "Sign In"}
             </button>
             {/* <Button children={'Sign in'} className='cursor-pointer' type="submit"/> */}
           </div>

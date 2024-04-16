@@ -98,7 +98,7 @@ function Postform({ post }) {
   return (
     <form
       onSubmit={handleSubmit(submit)}
-      className={`form sm:w-3/4 bg-white w-full min-h-fit rounded-md p-10 flex flex-wrap `}
+      className={`form bg-white w-full min-h-fit rounded-md p-10 flex flex-wrap `}
     >
       {showtoster ? <Toaster information={"Succsefull upload!!"} /> : null}
       <h2

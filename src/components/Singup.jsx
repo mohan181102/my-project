@@ -66,9 +66,8 @@ function Singup() {
               label="Password: "
               placeholder="Enter your password"
               type="password"
-              warning="true"
-    
-              showpassword="true"
+              warning={true}
+              showpassword={true}
               {...register("password", { required: true, minLength: 8 })}
             />
             <button

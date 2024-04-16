@@ -35,7 +35,7 @@ export class Authservice{
         try{
             return await this.account.createEmailSession(email,password)
         }catch(e){
-            console.log(`error from login: ${e}`)
+            return Promise.reject(console.log(`error from login: ${e}`))
         }
     }
 

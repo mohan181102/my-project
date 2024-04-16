@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { set } from "react-hook-form";
 
 const Input = React.forwardRef(function Input(
@@ -14,37 +14,32 @@ const Input = React.forwardRef(function Input(
   ref
 ) {
   const Id = useId();
-  const [value, setvalue] = useState(null);
 
   function warninshow(e) {
-    console.log(e.target.value);
-    setvalue(e.target.value);
-    console.log("valu:- ", value.length);
-    if (value != null) {
+    if (e.target.value.length < 8 && e.target.value.length > 2) {
       document.getElementById("warning").style.display = "block";
     }
-    if (value.length == 1 || value.length >= 5) {
-      
+    if (e.target.value.length >= 8 || e.target.value.length == 0) {
       document.getElementById("warning").style.display = "none";
     }
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full   ">
       {label && <label className="inline-block">{label}</label>}
       <input
         type={type}
-        className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-slate-500 duration-150 border border-gray-300 w-full 
+        className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-slate-500 duration-150 w-full  
             ${className}`}
         ref={ref}
         {...props}
-        onChange={(e) => warninshow(e)}
+        onChange={(e) => (type == "password" ? warninshow(e) : null)}
         // onPointerEnter={onChange}
         id={Id}
       />
       {showpassword ? (
-        <i
-          className="absolute z-50 w-5 h-full right-20"
+        <div
+          className=" w-auto inline-block h-full cursor-pointer bg-tranparent items-center justify-center"
           onClick={() => {
             document.getElementById(`${Id}`).getAttribute("type") == "password"
               ? document.getElementById(`${Id}`).setAttribute("type", "text")
@@ -53,24 +48,29 @@ const Input = React.forwardRef(function Input(
                   .setAttribute("type", "password");
           }}
         >
-          show
-        </i>
+          {showpassword ? (
+            <i class="fa-solid fa-eye-slash"></i>
+          ) : (
+            <i class="fa-solid fa-eye"></i>
+          )}
+        </div>
       ) : (
         ""
       )}
 
       {warning ? (
-        <div id="warning" className="w-2/4 h-1/4 p-2 absolute  bg-white  ">
+        <div
+          id="warning"
+          className="w-auto hidden h-auto p-2 absolute  bg-white  "
+        >
           <p className={`text-left mb-2 text-red-700`}>
             * Password must be 8 letters.
           </p>
           <p className={`text-left mb-2 text-red-700`}>
-            * Recommened crete strong password.
+            * Recommened create strong password.
           </p>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 });

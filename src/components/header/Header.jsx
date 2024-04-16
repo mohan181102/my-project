@@ -7,12 +7,17 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import authservice from "../../Appwrite/Auth";
+import { useLocation } from "react-router-dom";
 
 function Header() {
   const storestatus = useSelector((state) => state.auth.status);
   const [status, setstatus] = useState(false);
   const [value, setvalue] = useState(0);
   const windowwidth = window.innerWidth;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location);
 
   async function stats() {
     return await authservice
@@ -20,18 +25,17 @@ function Header() {
       .then((res) => setstatus(res ? true : false));
   }
   stats();
-  const navigate = useNavigate();
 
   const navitem = [
-    {
-      name: "Search",
-      slug: "/search",
-      active: status,
-    },
     {
       name: "Home",
       slug: "/",
       active: true,
+    },
+    {
+      name: "Search",
+      slug: "/search",
+      active: status,
     },
     {
       name: "Login",
@@ -62,72 +66,81 @@ function Header() {
 
   return (
     <>
-      <header id="header" className="py-3 bg-gray-300">
-        <Container>
-          <nav className="flex nav w-full bg-gray-500 h-auto overscroll-scroll items-center justify-center">
-            <div id="logo" className="mr-4">
-              <Link to="/">
-                <Logo width="70px" />
-              </Link>
-            </div>
+      <header id="header" className="w-full h-auto bg-gray-300">
+        <nav className="flex nav w-full px-4 bg-gray-500 h-auto py-2 overscroll-scroll items-center justify-between">
+          <div className="mr-4 flex gap-2 w-auto h-full items-center justify-between">
+            <Link to="/" id="logo">
+              <Logo width="70px" />
+            </Link>
 
-            <ul id="nav_item" className="nav_item flex items-center ">
-              {navitem.map((item) =>
-                item.active ? (
-                  <li
-                    onClick={() => {
-                      setvalue(0)(
-                        (document.getElementById("nav_item").style.width =
-                          "0px")
-                      );
-                    }}
-                    style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
-                    className={`nav_li px-4 `}
-                    key={item.name}
-                  >
-                    <button
-                      onClick={() => navigate(item.slug)}
-                      id="nav_btn"
-                      className="inline-block py-2 duration-200 hover:transparent  "
-                    >
-                      {item.name}
-                    </button>
-                  </li>
-                ) : null
-              )}
-
-              {status && (
-                <li
-                  className="nav_li"
-                  style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
-                >
-                  <Logoutbtn />
-                </li>
-              )}
-              <button
-                id="cross"
-                style={{ scale: `${value}` }}
-                onClick={() => {
-                  setvalue(0)(
-                    (document.getElementById("nav_item").style.width = "0px")
-                  );
-                }}
-              >
-                &#10060;
-              </button>
-            </ul>
-            <h2 className={`h2tag`}>Global gallery</h2>
-            <button
-              className={`forphone text-white w-auto h-full rounded-md fixed right-2`}
-              onClick={() => scale()}
+            <h2
+              className={` bg-white cursor-default py-1 text-gray-500 w-auto px-2 rounded-md text-xl font-bold h2tag`}
             >
-              <img
-                src={"/images.png"}
-                className={`w-10 h-10 bg-cover bg-center rounded-md`}
-              />
+              Global gallery
+            </h2>
+          </div>
+
+          <ul
+            id="nav_item"
+            className="nav_item flex w-auto px-2 h-full items-center "
+          >
+            {navitem.map((item) =>
+              item.active ? (
+                <li
+                  onClick={() => {
+                    setvalue(0);
+                    document.getElementById("nav_item").style.width = "0px";
+                  }}
+                  style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
+                  className={`nav_li text-xl font-bold text-white px-4 `}
+                  key={item.name}
+                >
+                  <button
+                    onClick={() => navigate(item.slug)}
+                    id="nav_btn"
+                    className={` ${
+                      location.pathname == item.slug
+                        ? "bg-white transition-all duration-300 rounded-md text-black px-3"
+                        : ""
+                    } py-2 duration-200 hover:transparent  `}
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ) : null
+            )}
+
+            {status && (
+              <li
+                className="nav_li nav_li text-xl font-bold text-white hover:scale-125 transition-all duration-300"
+                style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
+              >
+                <Logoutbtn />
+              </li>
+            )}
+            <button
+              id="cross"
+              style={{ scale: `${value}` }}
+              onClick={() => {
+                setvalue(0)(
+                  (document.getElementById("nav_item").style.width = "0px")
+                );
+              }}
+            >
+              &#10060;
             </button>
-          </nav>
-        </Container>
+          </ul>
+
+          <button
+            className={`forphone text-white w-auto h-full rounded-md fixed right-2`}
+            onClick={() => scale()}
+          >
+            <img
+              src={"/images.png"}
+              className={`w-10 h-10 bg-cover bg-center rounded-md`}
+            />
+          </button>
+        </nav>
       </header>
     </>
   );
