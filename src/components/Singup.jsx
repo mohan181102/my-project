@@ -37,7 +37,7 @@ function Singup() {
   return (
     <div className={`flex items-center justify-center `}>
       <div
-        className={`mx-auto w-full max-w-lg bg-gray-200 rounded-xl p-10 border border-black `}
+        className={` maindiv mx-auto w-full max-w-lg bg-gray-200 rounded-md p-10`}
       >
         <div className={`mb-2 flex justify-center`}>
           <span className={`changediv inline-block w-full max-w-[100px]`}>

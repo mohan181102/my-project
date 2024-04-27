@@ -18,8 +18,14 @@ function Home() {
       <Container>
         <div className={`flex flex-wrap `}>
           <div className="py-2 w-full ">
-            <h1 className="text-2xl font-bold hover:text-gray-200">
-              Login to read posts
+            <h1 className="text-3xl md:text-2xl w-auto h-auto font-bold ">
+              New user? please{" "}
+              <a
+                href="/Signup"
+                className={`hover:text-white transition-all duration-150`}
+              >
+                Signup...
+              </a>
             </h1>
           </div>
         </div>

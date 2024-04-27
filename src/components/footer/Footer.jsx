@@ -5,10 +5,10 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <section className="section relative overflow-hidden py-10 bg-gray-400 border border-t-2 border-t-black">
+    <section className="section relative overflow-hidden py-10 bg-gray-500 border border-t-2">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
-          <div className="w-full p-6 md:w-1/2 lg:w-5/12">
+          <div className="w-full p-6 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
               <div className="logofoot mb-4 inline-flex items-center">
                 <Logo width="100px" />
@@ -20,7 +20,7 @@ function Footer() {
               </div>
             </div>
           </div>
-          <div className="company w-full p-6 md:w-1/2 lg:w-2/12">
+          <div className="company border border-white border-spacing-1  w-auto p-6 md:w-1/2 lg:w-2/12">
             <div className="compan2 h-full">
               <h3 className="company_name tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
                 Company
@@ -61,7 +61,7 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <div className="company w-full p-6 md:w-1/2 lg:w-2/12">
+          <div className="company w-auto p-6 md:w-1/2 lg:w-2/12">
             <div className="compan2 h-full">
               <h3 className="company_name tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
                 Support
@@ -102,7 +102,7 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <div className=" company w-full p-6 md:w-1/2 lg:w-3/12">
+          <div className=" company w-auto p-6 md:w-1/2 lg:w-3/12">
             <div className="compan2 h-full">
               <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
                 Legals

@@ -1,6 +1,7 @@
-@media (max-width:600px) {
-    
-    .changediv{
-        width: 50px;
+@media screen and (max-width:600px) {
+    .maindiv{
+        width: 80%;
+        height: auto;
     }
+ 
 }

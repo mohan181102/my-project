@@ -60,14 +60,14 @@ function Header() {
   ];
 
   function scale() {
-    document.getElementById("nav_item").style.width = "180px";
     setvalue(1);
+    document.getElementById("nav_item").style.width = "180px";
   }
 
   return (
     <>
-      <header id="header" className="w-full h-auto bg-gray-300">
-        <nav className="flex nav w-full px-4 bg-gray-500 h-auto py-2 overscroll-scroll items-center justify-between">
+      <header id="header" className="w-full z-[20] h-auto bg-gray-300">
+        <nav className="flex z-[20] nav w-full px-4 bg-gray-500 h-auto py-2 overscroll-scroll items-center justify-between">
           <div className="mr-4 flex gap-2 w-auto h-full items-center justify-between">
             <Link to="/" id="logo">
               <Logo width="70px" />
@@ -82,27 +82,28 @@ function Header() {
 
           <ul
             id="nav_item"
-            className="nav_item flex w-auto px-2 h-full items-center "
+            className={`nav_item flex w-auto  px-2 h-full items-center `}
           >
             {navitem.map((item) =>
               item.active ? (
                 <li
-                  onClick={() => {
-                    setvalue(0);
-                    document.getElementById("nav_item").style.width = "0px";
+                  onClick={(e) => {
+                    console.log(e);
                   }}
                   style={{ scale: `${windowwidth > "500" ? 1 : value}` }}
-                  className={`nav_li text-xl font-bold text-white px-4 `}
+                  className={`nav_li text-xl ${
+                    location.pathname == item.slug ? "bg-white" : " "
+                  }  font-bold text-white mx-2 rounded-md px-2`}
                   key={item.name}
                 >
                   <button
                     onClick={() => navigate(item.slug)}
                     id="nav_btn"
-                    className={` ${
+                    className={` py-2 w-full ${
                       location.pathname == item.slug
-                        ? "bg-white transition-all duration-300 rounded-md text-black px-3"
+                        ? " bg-white rounded-[1.3rem] text-gray-500 "
                         : ""
-                    } py-2 duration-200 hover:transparent  `}
+                    } duration-200 hover:transparent  `}
                   >
                     {item.name}
                   </button>
@@ -122,9 +123,8 @@ function Header() {
               id="cross"
               style={{ scale: `${value}` }}
               onClick={() => {
-                setvalue(0)(
-                  (document.getElementById("nav_item").style.width = "0px")
-                );
+                setvalue(0);
+                document.getElementById("nav_item").style.width = "0px";
               }}
             >
               &#10060;

@@ -24,7 +24,7 @@ function Login() {
       const sesion = await authservice
         .login(data)
         .catch((error) => {
-          (er) => seterror(er), window.alert("Ops, Something went wrong! ");
+          seterror(error), window.alert("Ops, Something went wrong! ");
           console.log(error);
         })
         .finally(setloader(false));
@@ -47,9 +47,7 @@ function Login() {
 
   return (
     <div className="flex items-center justify-center w-full">
-      <div
-        className={`formdiv mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black`}
-      >
+      <div className={`formdiv mx-auto w-full bg-gray-100 rounded-md p-10 `}>
         <div className={`mb-2 flex justify-center`}>
           <span className={`inline-block w-full max-w-[100px]`}>
             <Logo width="100%" />
@@ -80,7 +78,8 @@ function Login() {
             <button
               type="submit"
               onClick={() => setloader(true)}
-              className={` bg-blue-300 w-auto rounded-lg h-auto p-3 items-center`}
+              disabled={loader}
+              className={` bg-blue-300 disabled:opacity-50 w-auto rounded-lg h-auto p-3 items-center`}
             >
               {loader ? "loading..." : "Sign In"}
             </button>

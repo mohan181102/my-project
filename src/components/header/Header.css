@@ -35,6 +35,7 @@
     @media screen and (max-width:680px) {
         #header{
             width: 100vw;
+            z-index: 20;
             color: white;
             height: 60px;
             display: flex ;
@@ -43,7 +44,7 @@
             background-color: black;
             /* display: absolute; */
             position: fixed;
-            z-index: 1;
+           
             justify-content: space-around;
             object-fit: contain;
         }
@@ -56,7 +57,7 @@
             scale:(1);
             z-index: 200;
             padding: 0px;
-            background-color:black;
+            background-color:rgb(107 114 128);
             color: white;
             right: 0px;
             top: 0px;
@@ -92,7 +93,7 @@
             border: 2px solid white;
             border-radius: 0.5rem;
            margin-top: 100px;
-           background-color: black;
+           background-color: rgb(107 114 128);
            color: white;
         }
         .h2tag{
@@ -124,10 +125,10 @@
             margin-right: 2px;
             display: flex;
             align-items: center;
-            padding: 4px;
-            background-color: black;
+            padding: 0px;
+            background-color: rgb(107 114 128);
             width:90px;
-           
+        
             font-size: 0.8rem;
             justify-content: center;
             border-radius: 1.3rem;
@@ -138,22 +139,13 @@
         }
 
         
-        .nav_li:hover{
-            background-color: white;
-            color: white;
-            
-            background-image: linear-gradient(
-                280deg,
-                transparent,
-                rgba(37,37,37,0.5)
-            );
-        }
+         
         
     
         
     
         #logo{
-            border: 2px solid white;
+           
             /* position: fixed; */
             width: 40px;
             height: 40px;
@@ -163,10 +155,7 @@
             
             margin-bottom: 4px;
             margin-left: 10px;
-            animation: logoanimation;
-            animation-duration: 1s;
-            animation-delay: 0.3s;
-            animation-iteration-count: infinite;
+            
     
         }
      
